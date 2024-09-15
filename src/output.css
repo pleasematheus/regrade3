@@ -154,6 +154,42 @@
   font-style: normal;
 }
 
+.cg-thin {
+  font-family: 'CabinetGrotesk-Thin';
+}
+
+.cg-extralight {
+  font-family: 'CabinetGrotesk-Extralight';
+}
+
+.cg-light {
+  font-family: 'CabinetGrotesk-Light';
+}
+
+.cg-regular {
+  font-family: 'CabinetGrotesk-Regular';
+}
+
+.cg-medium {
+  font-family: 'CabinetGrotesk-Medium';
+}
+
+.cg-bold {
+  font-family: 'CabinetGrotesk-Bold';
+}
+
+.cg-extrabold {
+  font-family: 'CabinetGrotesk-Extrabold';
+}
+
+.cg-black {
+  font-family: 'CabinetGrotesk-Black';
+}
+
+.cg-variable {
+  font-family: 'CabinetGrotesk-Variable';
+}
+
 /*! tailwindcss v3.4.11 | MIT License | https://tailwindcss.com
 */
 
@@ -721,8 +757,13 @@ video {
   place-items: center;
 }
 
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
+}
+
 :root {
-  font-family: 'CabinetGrotesk-Regular';
+  font-family: 'CabinetGrotesk-Variable';
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -733,3 +774,4 @@ video {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+

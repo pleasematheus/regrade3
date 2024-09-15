@@ -4,8 +4,8 @@ import './App.css'
 function App() {
 
   return (
-    <div className='grid place-items-center h-svh'>
-      <h1>Regra de 3</h1>
+    <div className="grid place-items-center h-svh">
+      <h1 className="cg-black text-9xl">Regra de 3</h1>
     </div>
   )
 }

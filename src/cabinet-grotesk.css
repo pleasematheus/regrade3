@@ -108,3 +108,38 @@
   font-style: normal;
 }
 
+.cg-thin {
+  font-family: 'CabinetGrotesk-Thin';
+}
+
+.cg-extralight {
+  font-family: 'CabinetGrotesk-Extralight';
+}
+
+.cg-light {
+  font-family: 'CabinetGrotesk-Light';
+}
+
+.cg-regular {
+  font-family: 'CabinetGrotesk-Regular';
+}
+
+.cg-medium {
+  font-family: 'CabinetGrotesk-Medium';
+}
+
+.cg-bold {
+  font-family: 'CabinetGrotesk-Bold';
+}
+
+.cg-extrabold {
+  font-family: 'CabinetGrotesk-Extrabold';
+}
+
+.cg-black {
+  font-family: 'CabinetGrotesk-Black';
+}
+
+.cg-variable {
+  font-family: 'CabinetGrotesk-Variable';
+}
