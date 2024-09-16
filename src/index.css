@@ -1,3 +1,10 @@
+/* Color Scheme:
+** #222831 
+** #31363F
+** #76ABAE
+** #EEEEEE
+*/
+
 @import url("cabinet-grotesk.css");
 
 @import 'tailwindcss/base';
@@ -10,11 +17,18 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #EEEEEE;
+  background-color: #222831;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  scroll-behavior: smooth;
+}
+
+:root::selection {
+  color: #222831;
+  background-color: #76ABAE;
 }
