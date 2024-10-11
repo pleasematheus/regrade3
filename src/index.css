@@ -1,8 +1,8 @@
 /* Color Scheme:
-** #222831 
-** #31363F
-** #76ABAE
-** #EEEEEE
+** 1. Gunmetal-1:       #222831 
+** 2. Gunmetal-2:       #31363F
+** 3. Verdigris:        #76ABAE
+** 4. Anti-flash white  #EEEEEE
 */
 
 @import url("cabinet-grotesk.css");
@@ -12,23 +12,27 @@
 @import 'tailwindcss/utilities';
 
 :root {
+  --gunmetal-1: #222831;
+  --gunmetal-2: #31363F;
+  --verdigris: #76ABAE;
+  --anti-flash-white: #EEEEEE;
+
   font-family: 'CabinetGrotesk-Variable';
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #EEEEEE;
-  background-color: #222831;
+  color: var(--anti-flash-white);
+  background-color: var(--gunmetal-1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   scroll-behavior: smooth;
 }
 
-:root::selection {
-  color: #222831;
-  background-color: #76ABAE;
+*::selection {
+  color: var(--anti-flash-white);
+  background-color: var(--verdigris);
 }

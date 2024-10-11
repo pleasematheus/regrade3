@@ -1,3 +1,10 @@
+/* Color Scheme:
+** 1. Gunmetal-1:       #222831 
+** 2. Gunmetal-2:       #31363F
+** 3. Verdigris:        #76ABAE
+** 4. Anti-flash white  #EEEEEE
+*/
+
 /**
 * @license
 *
@@ -190,7 +197,7 @@
   font-family: 'CabinetGrotesk-Variable';
 }
 
-/*! tailwindcss v3.4.11 | MIT License | https://tailwindcss.com
+/* ! tailwindcss v3.4.11 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -763,15 +770,29 @@ video {
 }
 
 :root {
+  --gunmetal-1: #222831;
+  --gunmetal-2: #31363F;
+  --verdigris: #76ABAE;
+  --anti-flash-white: #EEEEEE;
   font-family: 'CabinetGrotesk-Variable';
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--anti-flash-white);
+  background-color: var(--gunmetal-1);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
+*::-moz-selection {
+  color: var(--anti-flash-white);
+  background-color: var(--verdigris);
+}
+
+*::selection {
+  color: var(--anti-flash-white);
+  background-color: var(--verdigris);
+}
