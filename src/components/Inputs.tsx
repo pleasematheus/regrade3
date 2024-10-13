@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react"
-import Clipboard from "../assets/clipboard.svg"
-import History from "./History" // Importe o componente History
+
+import ClipboardIcon from "../assets/clipboard.svg"
+import PlusIcon from "../assets/plus.svg"
+import LessIcon from "../assets/dash.svg"
+import HistoryIcon from "../assets/clock-history.svg"
+import TrashIcon from "../assets/trash.svg"
+
+import History from "./History"
 
 const Inputs: React.FC = () => {
   const [a, setA] = useState<number | undefined>(undefined)
@@ -67,17 +73,19 @@ const Inputs: React.FC = () => {
 
   return (
     <div className="grid place-items-center gap-3">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center">
         <input
           type="number"
-          className="input input-bordered p-4 w-32 max-w-xs"
+          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
           maxLength={18}
           onChange={(e) =>
             setA(e.target.value ? Number(e.target.value) : undefined)
           }
           value={a ?? ""}
         />
-        <span className="w-24 text-center">esta para</span>
+        <span className="w-24 text-center cg-medium bg-base-200 leading-8">
+          está para
+        </span>
         <input
           type="number"
           className="input input-bordered p-4 w-32 max-w-xs"
@@ -88,7 +96,8 @@ const Inputs: React.FC = () => {
           value={b ?? ""}
         />
       </div>
-      <div className="flex items-center gap-3">
+      <span className="w-24 text-center cg-bold text-md">ASSIM COMO</span>
+      <div className="flex items-center">
         <input
           type="number"
           className="input input-bordered p-4 w-32 max-w-xs"
@@ -98,27 +107,43 @@ const Inputs: React.FC = () => {
           }
           value={c ?? ""}
         />
-        <span className="w-24 text-center">assim como</span>
+        <span className="w-24 text-center cg-medium bg-base-200 leading-8">
+          está para
+        </span>
         <input
           type="number"
-          className="input input-bordered p-4 w-32 max-w-xs"
+          className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold"
           maxLength={18}
           readOnly
           value={d?.toFixed(decimalPlaces) ?? ""}
         />
       </div>
       <div className="flex gap-2">
-        <button className="btn" onClick={increaseDecimalPlaces}>
-          Aumentar casas decimais
+        <button className="btn btn-accent w-36" onClick={increaseDecimalPlaces}>
+          <div className="flex gap-2 items-center">
+            <img src={PlusIcon} />
+            <span>Aumentar casas decimais</span>
+          </div>
         </button>
-        <button className="btn" onClick={decreaseDecimalPlaces}>
-          Reduzir casas decimais
+        <button className="btn btn-accent w-36" onClick={decreaseDecimalPlaces}>
+          <div className="flex gap-2 items-center">
+            <img src={LessIcon} />
+            <span>Reduzir casas decimais</span>
+          </div>
         </button>
-        <button className="btn" onClick={addToHistory}>
-          Adicionar ao Histórico
+      </div>
+      <div className="flex gap-2">
+        <button className="btn btn-neutral w-36" onClick={addToHistory}>
+          <div className="flex gap-2 items-center">
+            <img src={HistoryIcon} />
+            <span>Adicionar ao Histórico</span>
+          </div>
         </button>
-        <button className="btn btn-danger" onClick={clearHistory}>
-          Limpar Histórico
+        <button className="btn btn-secondary w-36" onClick={clearHistory}>
+          <div className="flex gap-2 items-center">
+            <img src={TrashIcon} />
+            <span>Limpar Histórico</span>
+          </div>
         </button>
       </div>
       <button
@@ -127,8 +152,8 @@ const Inputs: React.FC = () => {
         onClick={copyToClipboard}
       >
         <div className="flex gap-2 items-center">
-          <img src={Clipboard} width="16" height="16" />
-          <span>Copiar</span>
+          <img src={ClipboardIcon} width="16" height="16" />
+          <span>Copiar resultado</span>
         </div>
       </button>
 

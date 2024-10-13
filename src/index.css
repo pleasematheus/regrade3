@@ -36,3 +36,8 @@
   color: var(--baby-powder);
   background-color: var(--light-sea-green);
 }
+
+.resultado::selection {
+  color: var(--baby-powder);
+  background-color: var(--red-pantone);
+}

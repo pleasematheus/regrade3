@@ -1,4 +1,3 @@
-// History.tsx
 import React, { useEffect } from "react"
 
 const History: React.FC<{ history: Array<string> }> = ({ history }) => {
@@ -8,7 +7,7 @@ const History: React.FC<{ history: Array<string> }> = ({ history }) => {
   }, [history])
 
   return (
-    <div className="mt-5 max-h-40 overflow-y-auto border border-gray-300 p-3">
+    <div className="mt-5 max-h-40 overflow-y-auto border rounded-md border-gray-300 p-3">
       <h3 className="text-lg font-semibold">Histórico de Cálculos</h3>
       <ul className="list-disc pl-5">
         {history.map((entry, index) => (
