@@ -88,7 +88,7 @@ const Inputs: React.FC = () => {
         </span>
         <input
           type="number"
-          className="input input-bordered p-4 w-32 max-w-xs"
+          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
           maxLength={18}
           onChange={(e) =>
             setB(e.target.value ? Number(e.target.value) : undefined)
@@ -100,7 +100,7 @@ const Inputs: React.FC = () => {
       <div className="flex items-center">
         <input
           type="number"
-          className="input input-bordered p-4 w-32 max-w-xs"
+          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
           maxLength={18}
           onChange={(e) =>
             setC(e.target.value ? Number(e.target.value) : undefined)
@@ -112,7 +112,7 @@ const Inputs: React.FC = () => {
         </span>
         <input
           type="number"
-          className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold"
+          className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out"
           maxLength={18}
           readOnly
           value={d?.toFixed(decimalPlaces) ?? ""}
