@@ -17,16 +17,15 @@ export default {
           primary: "#2EC4B6",
           secondary: "#E71D36",
           accent: "#FF9F1C",
-          neutral: "#7F8B92",
+          neutral: "#898A88",
           "base-100": "#FDFFFC"
-
         },
         dark: {
           primary: "#2EC4B6",
           secondary: "#E71D36",
           accent: "#FF9F1C",
-          neutral: "#7F8B92",
-          "base-100": "#011627"
+          neutral: "#898A88",
+          "base-100": "#141414"
         }
       }
     ],

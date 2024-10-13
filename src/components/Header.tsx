@@ -1,8 +1,10 @@
+import { WordPullUp } from "./wordpullup"
+
 export default () => {
   return (
     <header className="flex flex-grow items-center justify-between">
       <h1 className="cg-black text-4xl leading-[4rem] flex-grow text-center">
-        Regra de 3
+        <WordPullUp renderText="Regra de 3" transitionTime={0.4} />
       </h1>
       <label className="swap swap-rotate m-3">
         {/* this hidden checkbox controls the state */}

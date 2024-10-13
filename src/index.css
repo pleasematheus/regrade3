@@ -1,6 +1,6 @@
 /* Color Scheme:
-** 1. Rich black:       #011627
-** 2. Slate gray:       #7F8B92 
+** 1. Night:            #141414
+** 2. Battleship gray:  #898A88 
 ** 2. Baby powder:      #FDFFFC
 ** 3. Light sea green:  #2EC4B6
 ** 4. Red (pantone):    #E71D36
@@ -14,8 +14,8 @@
 @import 'tailwindcss/utilities';
 
 :root {
-  --rich-black: #011627;
-  --slate-gray: #7F8B92;
+  --night: #141414;
+  --battleship-gray: #898A88;
   --baby-powder: #FDFFFC;
   --light-sea-green: #2EC4B6;
   --red-pantone: #E71D36;
