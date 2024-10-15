@@ -5,7 +5,7 @@ const Footer = () => {
       <p>
         Feito com ❤️ e carinho por{" "}
         <a
-          href="http://https://github.com/pleasematheus"
+          href="https://github.com/pleasematheus"
           target="_blank"
           className="text-blue-500"
         >
