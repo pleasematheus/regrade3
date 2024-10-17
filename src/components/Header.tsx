@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { WordPullUp } from "./wordpullup"
 
 export default () => {
-  const [theme, setTheme] = useState("light")
+  const [theme, setTheme] = useState("dark")
 
   useEffect(() => {
     // Verifica o tema salvo no localStorage
