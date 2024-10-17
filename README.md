@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# Regra de 3
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um app para realizar o cálculo da regra de 3 de forma prática e rápida.
 
-Currently, two official plugins are available:
+## Descrição
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O Regrade3 é um aplicativo que facilita o cálculo da regra de três, permitindo que você resolva problemas de proporção de maneira eficiente.
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **CSS**: 80.8%
+- **TypeScript**: 15.9%
+- **JavaScript**: 2.2%
+- **HTML**: 1.1%
 
-- Configure the top-level `parserOptions` property like this:
+## Como Usar
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Clone este repositório:
+   ```sh
+   git clone https://github.com/pleasematheus/regrade3.git
+   ```
+2. Navegue até o diretório do projeto:
+   ```sh
+   cd regrade3
+   ```
+3. Instale as dependências:
+   ```sh
+   npm install
+   ```
+4. Inicie o aplicativo:
+   ```sh
+   npm start
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Contribuindo
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Faça um fork deste repositório.
+2. Crie uma branch com a sua feature:
+   ```sh
+   git checkout -b minha-feature
+   ```
+3. Commit suas mudanças:
+   ```sh
+   git commit -m 'Minha nova feature'
+   ```
+4. Faça um push para a branch:
+   ```sh
+   git push origin minha-feature
+   ```
+5. Abra um Pull Request.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Licença
+
+Este projeto está licenciado sob a licença Apache 2.0. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
