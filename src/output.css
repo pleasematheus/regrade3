@@ -2052,9 +2052,44 @@ html {
   border-width: 1px;
 }
 
+.border-4 {
+  border-width: 4px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-\[1px\] {
+  border-width: 1px;
+}
+
+.border-\[\#7A101C\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(122 16 28 / var(--tw-border-opacity));
+}
+
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-\[\#\#9C1424\] {
+  border-color: ##9C1424;
+}
+
+.border-\[\#9C1424\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 20 36 / var(--tw-border-opacity));
+}
+
+.border-\[\#BE192C\#9C1424\] {
+  border-color: #BE192C#9C1424;
+}
+
+.border-\[\#BE192C\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(190 25 44 / var(--tw-border-opacity));
 }
 
 .bg-base-200 {

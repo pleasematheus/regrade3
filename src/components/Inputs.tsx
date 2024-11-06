@@ -5,6 +5,7 @@ import PlusIcon from "../assets/plus.svg"
 import LessIcon from "../assets/dash.svg"
 import HistoryIcon from "../assets/clock-history.svg"
 import TrashIcon from "../assets/trash.svg"
+import XIcon from "../assets/x-circle-fill.svg"
 
 import History from "./History"
 
@@ -71,6 +72,13 @@ const Inputs: React.FC = () => {
     localStorage.removeItem("calculationHistory") // Remove do localStorage
   }
 
+  const clearInputs = () => {
+    setA(undefined)
+    setB(undefined)
+    setC(undefined)
+    setD(undefined)
+  }
+
   return (
     <div className="grid place-items-center gap-3">
       <div className="flex items-center">
@@ -118,44 +126,61 @@ const Inputs: React.FC = () => {
           value={d?.toFixed(decimalPlaces) ?? ""}
         />
       </div>
-      <div className="flex gap-2">
-        <button className="btn btn-accent w-36" onClick={increaseDecimalPlaces}>
+      <div className="grid gap-2">
+        <button
+          className="btn btn-secondary border-[1px] border-[#BE192C]"
+          onClick={clearInputs}
+        >
           <div className="flex gap-2 items-center">
-            <img src={PlusIcon} />
-            <span>Aumentar casas decimais</span>
+            <img src={XIcon} />
+            <span>Limpar campos</span>
           </div>
         </button>
-        <button className="btn btn-accent w-36" onClick={decreaseDecimalPlaces}>
-          <div className="flex gap-2 items-center">
-            <img src={LessIcon} />
-            <span>Reduzir casas decimais</span>
-          </div>
-        </button>
-      </div>
-      <div className="flex gap-2">
-        <button className="btn btn-neutral w-36" onClick={addToHistory}>
-          <div className="flex gap-2 items-center">
-            <img src={HistoryIcon} />
-            <span>Adicionar ao Histórico</span>
-          </div>
-        </button>
-        <button className="btn btn-secondary w-36" onClick={clearHistory}>
-          <div className="flex gap-2 items-center">
-            <img src={TrashIcon} />
-            <span>Limpar Histórico</span>
-          </div>
-        </button>
-      </div>
-      <button
-        className="btn btn-primary tooltip"
-        data-tip={tooltipText}
-        onClick={copyToClipboard}
-      >
-        <div className="flex gap-2 items-center">
-          <img src={ClipboardIcon} width="16" height="16" />
-          <span>Copiar resultado</span>
+        <div className="flex gap-2">
+          <button
+            className="btn btn-accent w-36"
+            onClick={increaseDecimalPlaces}
+          >
+            <div className="flex gap-2 items-center">
+              <img src={PlusIcon} />
+              <span>Aumentar casas decimais</span>
+            </div>
+          </button>
+          <button
+            className="btn btn-accent w-36"
+            onClick={decreaseDecimalPlaces}
+          >
+            <div className="flex gap-2 items-center">
+              <img src={LessIcon} />
+              <span>Reduzir casas decimais</span>
+            </div>
+          </button>
         </div>
-      </button>
+        <div className="flex gap-2">
+          <button className="btn btn-neutral w-36" onClick={addToHistory}>
+            <div className="flex gap-2 items-center">
+              <img src={HistoryIcon} />
+              <span>Adicionar ao Histórico</span>
+            </div>
+          </button>
+          <button className="btn btn-secondary w-36" onClick={clearHistory}>
+            <div className="flex gap-2 items-center">
+              <img src={TrashIcon} />
+              <span>Limpar Histórico</span>
+            </div>
+          </button>
+        </div>
+        <button
+          className="btn btn-primary tooltip"
+          data-tip={tooltipText}
+          onClick={copyToClipboard}
+        >
+          <div className="flex gap-2 items-center">
+            <img src={ClipboardIcon} width="16" height="16" />
+            <span>Copiar resultado</span>
+          </div>
+        </button>
+      </div>
 
       {/* Passar o estado do histórico para o componente History */}
       <History history={history} />
