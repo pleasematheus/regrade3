@@ -138,7 +138,7 @@ const Inputs: React.FC = () => {
         </button>
         <div className="flex gap-2">
           <button
-            className="btn btn-accent w-36"
+            className="btn btn-accent w-36 border-[1px] border-[#D48617]"
             onClick={increaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -147,7 +147,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-accent w-36"
+            className="btn btn-accent w-36 border-[1px] border-[#D48617]"
             onClick={decreaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -157,13 +157,19 @@ const Inputs: React.FC = () => {
           </button>
         </div>
         <div className="flex gap-2">
-          <button className="btn btn-neutral w-36" onClick={addToHistory}>
+          <button
+            className="btn btn-neutral w-36 border-[1px] border-[#818180]"
+            onClick={addToHistory}
+          >
             <div className="flex gap-2 items-center">
               <img src={HistoryIcon} />
               <span>Adicionar ao Histórico</span>
             </div>
           </button>
-          <button className="btn btn-secondary w-36" onClick={clearHistory}>
+          <button
+            className="btn btn-secondary w-36 border-[1px] border-[#BE192C]"
+            onClick={clearHistory}
+          >
             <div className="flex gap-2 items-center">
               <img src={TrashIcon} />
               <span>Limpar Histórico</span>
@@ -171,7 +177,7 @@ const Inputs: React.FC = () => {
           </button>
         </div>
         <button
-          className="btn btn-primary tooltip"
+          className="btn btn-primary tooltip border-[1px] border-[#239A8E]"
           data-tip={tooltipText}
           onClick={copyToClipboard}
         >

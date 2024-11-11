@@ -29,7 +29,8 @@ export function WordPullUp(props: WordPullUpProps) {
       initial="hidden"
       animate="show"
       className={clsx(
-        "text-center font-display font-bold drop-shadow-sm",
+        "flex gap-3",
+        "font-display font-bold drop-shadow-sm",
         "text-4xl md:text-5xl lg:text-6xl xl:text-7xl",
         "tracking-[-0.02em]",
         "md:leading-[4rem] lg:leading-[4.5rem] xl:leading-[5rem]"
@@ -39,7 +40,7 @@ export function WordPullUp(props: WordPullUpProps) {
         <motion.span
           key={i}
           variants={item}
-          style={{ display: "inline-block", paddingRight: "15px" }}
+          style={{}}
         >
           {word === "" ? <span>&nbsp;</span> : word}
         </motion.span>

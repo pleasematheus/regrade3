@@ -1669,12 +1669,6 @@ html {
   outline-offset: 2px;
 }
 
-.mockup-phone .display {
-  overflow: hidden;
-  border-radius: 40px;
-  margin-top: -25px;
-}
-
 .mockup-browser .mockup-browser-toolbar .input {
   position: relative;
   margin-left: auto;
@@ -1956,6 +1950,10 @@ html {
   bottom: 0px;
 }
 
+.right-10 {
+  right: 2.5rem;
+}
+
 .m-3 {
   margin: 0.75rem;
 }
@@ -1964,8 +1962,12 @@ html {
   margin-top: 1.25rem;
 }
 
-.inline-block {
-  display: inline-block;
+.mr-10 {
+  margin-right: 2.5rem;
+}
+
+.ml-10 {
+  margin-left: 2.5rem;
 }
 
 .flex {
@@ -2012,12 +2014,12 @@ html {
   max-width: 20rem;
 }
 
-.flex-grow {
-  flex-grow: 1;
-}
-
 .list-disc {
   list-style-type: disc;
+}
+
+.grid-cols-\[1fr_0fr\] {
+  grid-template-columns: 1fr 0fr;
 }
 
 .place-items-center {
@@ -2028,16 +2030,24 @@ html {
   align-items: center;
 }
 
-.justify-between {
-  justify-content: space-between;
-}
-
 .gap-2 {
   gap: 0.5rem;
 }
 
 .gap-3 {
   gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.justify-self-center {
+  justify-self: center;
 }
 
 .overflow-y-auto {
@@ -2052,44 +2062,42 @@ html {
   border-width: 1px;
 }
 
-.border-4 {
-  border-width: 4px;
-}
-
-.border-2 {
-  border-width: 2px;
-}
-
 .border-\[1px\] {
   border-width: 1px;
 }
 
-.border-\[\#7A101C\] {
+.border-t-\[1px\] {
+  border-top-width: 1px;
+}
+
+.border-\[\#239A8E\] {
   --tw-border-opacity: 1;
-  border-color: rgb(122 16 28 / var(--tw-border-opacity));
+  border-color: rgb(35 154 142 / var(--tw-border-opacity));
 }
 
-.border-gray-300 {
+.border-\[\#818180\] {
   --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
-.border-\[\#\#9C1424\] {
-  border-color: ##9C1424;
-}
-
-.border-\[\#9C1424\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(156 20 36 / var(--tw-border-opacity));
-}
-
-.border-\[\#BE192C\#9C1424\] {
-  border-color: #BE192C#9C1424;
+  border-color: rgb(129 129 128 / var(--tw-border-opacity));
 }
 
 .border-\[\#BE192C\] {
   --tw-border-opacity: 1;
   border-color: rgb(190 25 44 / var(--tw-border-opacity));
+}
+
+.border-\[\#D48617\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(212 134 23 / var(--tw-border-opacity));
+}
+
+.border-base-300 {
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-border-opacity)));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
 .bg-base-200 {
