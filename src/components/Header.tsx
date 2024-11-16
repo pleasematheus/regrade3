@@ -22,8 +22,8 @@ export default () => {
   }
 
   return (
-    <header className="grid grid-cols-[1fr_0fr]">
-      <div className="justify-self-center ml-10">
+    <header className="grid grid-cols-[1fr_0fr] items-center">
+      <div className="justify-self-center ml-[3.875rem]">
         <h1 className="cg-black text-4xl leading-[4rem]">
           <WordPullUp renderText="Regra de 3" transitionTime={0.4} />
         </h1>
