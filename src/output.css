@@ -1942,32 +1942,44 @@ html {
   bottom: var(--tooltip-tail-offset);
 }
 
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
 }
 
 .bottom-0 {
   bottom: 0px;
 }
 
-.right-10 {
-  right: 2.5rem;
-}
-
 .m-3 {
   margin: 0.75rem;
+}
+
+.ml-10 {
+  margin-left: 2.5rem;
 }
 
 .mt-5 {
   margin-top: 1.25rem;
 }
 
-.mr-10 {
-  margin-right: 2.5rem;
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
-.ml-10 {
-  margin-left: 2.5rem;
+.mt-auto {
+  margin-top: auto;
 }
 
 .flex {
@@ -1986,8 +1998,24 @@ html {
   height: 2.5rem;
 }
 
+.h-auto {
+  height: auto;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
 .max-h-40 {
   max-height: 10rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-10 {
@@ -2014,12 +2042,24 @@ html {
   max-width: 20rem;
 }
 
+.flex-grow {
+  flex-grow: 1;
+}
+
 .list-disc {
   list-style-type: disc;
 }
 
 .grid-cols-\[1fr_0fr\] {
   grid-template-columns: 1fr 0fr;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .place-items-center {
@@ -2030,6 +2070,10 @@ html {
   align-items: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -2038,8 +2082,8 @@ html {
   gap: 0.75rem;
 }
 
-.gap-4 {
-  gap: 1rem;
+.self-end {
+  align-self: flex-end;
 }
 
 .justify-self-end {
