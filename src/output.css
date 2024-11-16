@@ -1942,32 +1942,16 @@ html {
   bottom: var(--tooltip-tail-offset);
 }
 
-.fixed {
-  position: fixed;
-}
-
-.bottom-0 {
-  bottom: 0px;
-}
-
-.right-10 {
-  right: 2.5rem;
-}
-
 .m-3 {
   margin: 0.75rem;
 }
 
+.ml-\[3\.875rem\] {
+  margin-left: 3.875rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.mr-10 {
-  margin-right: 2.5rem;
-}
-
-.ml-10 {
-  margin-left: 2.5rem;
 }
 
 .flex {
@@ -1984,6 +1968,10 @@ html {
 
 .h-10 {
   height: 2.5rem;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .max-h-40 {
@@ -2022,6 +2010,10 @@ html {
   grid-template-columns: 1fr 0fr;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .place-items-center {
   place-items: center;
 }
@@ -2030,16 +2022,16 @@ html {
   align-items: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
 
 .gap-3 {
   gap: 0.75rem;
-}
-
-.gap-4 {
-  gap: 1rem;
 }
 
 .justify-self-end {
