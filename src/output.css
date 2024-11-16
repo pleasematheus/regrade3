@@ -1942,8 +1942,20 @@ html {
   bottom: var(--tooltip-tail-offset);
 }
 
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
 }
 
 .bottom-0 {
@@ -2030,8 +2042,24 @@ html {
   height: 2.5rem;
 }
 
+.h-auto {
+  height: auto;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
 .max-h-40 {
   max-height: 10rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-10 {
@@ -2058,6 +2086,10 @@ html {
   max-width: 20rem;
 }
 
+.flex-grow {
+  flex-grow: 1;
+}
+
 .list-disc {
   list-style-type: disc;
 }
@@ -2076,6 +2108,10 @@ html {
 
 .items-center {
   align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .gap-2 {
