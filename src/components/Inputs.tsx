@@ -23,12 +23,18 @@ const Inputs: React.FC = () => {
     const savedHistory = localStorage.getItem("calculationHistory")
     return savedHistory ? JSON.parse(savedHistory) : []
   })
+  const [isInverselyProportional, setIsInverselyProportional] = useState(false)
 
   useEffect(() => {
-    if (a && b && c) {
-      setD((Number(c) * Number(b)) / Number(a))
+    switch (isInverselyProportional) {
+      case false:
+        setD((Number(c) * Number(b)) / Number(a))
+        break
+      case true:
+        setD((Number(a) * Number(b)) / Number(c))
+        break
     }
-  }, [a, b, c])
+  }, [a, b, c, isInverselyProportional])
 
   const copyToClipboard = () => {
     navigator.clipboard
@@ -127,6 +133,21 @@ const Inputs: React.FC = () => {
         />
       </div>
       <div className="grid gap-2">
+        <div className="form-control">
+          <label className="label cursor-pointer">
+            <input
+              type="checkbox"
+              className="toggle"
+              checked={isInverselyProportional}
+              onChange={() =>
+                setIsInverselyProportional(!isInverselyProportional)
+              }
+            />
+            <span className="label-text font-medium">
+              Inversamente proporcional
+            </span>
+          </label>
+        </div>
         <button
           className="btn btn-secondary border-[1px] border-[#BE192C]"
           onClick={clearInputs}
