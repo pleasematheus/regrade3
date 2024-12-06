@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from 'daisyui';
+
 export default {
   content: [
     "./index.html",
@@ -8,7 +10,7 @@ export default {
     extend: {},
   },
   plugins: [
-    require('daisyui'),
+    daisyui,
   ],
   daisyui: {
     themes: [
@@ -18,7 +20,7 @@ export default {
           secondary: "#E71D36",
           accent: "#FF9F1C",
           neutral: "#898A88",
-          "base-100": "#FDFFFC"
+          "base-100": "#FDFFFC",
         },
         dark: {
           primary: "#2EC4B6",
@@ -26,9 +28,9 @@ export default {
           accent: "#FF9F1C",
           neutral: "#898A88",
           "base-100": "#141414",
-          "base-200": "#4F4F4E"
-        }
-      }
+          "base-200": "#4F4F4E",
+        },
+      },
     ],
   },
-}
+};
