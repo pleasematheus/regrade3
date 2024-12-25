@@ -134,7 +134,7 @@ const Inputs: React.FC = () => {
       </div>
       <div className="grid gap-2">
         <div className="form-control">
-          <label className="label cursor-pointer">
+          <label className="label cursor-pointer rounded-lg p-3 hover:bg-base-400 transition-all duration-300 ease-in-out active:bg-base-200">
             <input
               type="checkbox"
               className="toggle"
@@ -202,7 +202,7 @@ const Inputs: React.FC = () => {
           data-tip={tooltipText}
           onClick={copyToClipboard}
         >
-          <div className="flex justify-center items-center gap-2 items-center">
+          <div className="flex justify-center items-center gap-2">
             <img src={ClipboardIcon} width="16" height="16" />
             <span>Copiar resultado</span>
           </div>
