@@ -1,14 +1,15 @@
 {
   "name": "regrade3",
   "private": true,
-  "version": "1.7.2",
+  "version": "1.7.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "tailw": "tailwindcss -i ./src/index.css -o ./src/output.css"
+    "tailw": "tailwindcss -i ./src/index.css -o ./src/output.css --watch",
+    "tailb": "tailwindcss -i ./src/index.css -o ./src/output.css --minify"
   },
   "dependencies": {
     "clsx": "^2.1.1",

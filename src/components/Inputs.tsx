@@ -202,7 +202,7 @@ const Inputs: React.FC = () => {
           data-tip={tooltipText}
           onClick={copyToClipboard}
         >
-          <div className="flex gap-2 items-center">
+          <div className="flex justify-center items-center gap-2 items-center">
             <img src={ClipboardIcon} width="16" height="16" />
             <span>Copiar resultado</span>
           </div>

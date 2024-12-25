@@ -7,7 +7,7 @@ const Footer = () => {
         <a
           href="https://github.com/pleasematheus"
           target="_blank"
-          className="text-blue-500"
+          className="text-blue-500 hover:text-sky-500 transition-all ease-in-out duration-300"
         >
           pleasematheus
         </a>
