@@ -15,8 +15,11 @@ const Inputs: React.FC = () => {
   const [c, setC] = useState<number | undefined>(undefined)
   const [d, setD] = useState<number | undefined>(undefined)
   const [decimalPlaces, setDecimalPlaces] = useState<number>(2)
-  const [tooltipText, setTooltipText] = useState<string>(
+  const [tooltipClipboard, setTooltipClipboard] = useState<string>(
     "Copie o resultado para a área de transferência"
+  )
+  const [tooltipHistory, setTooltipHistory] = useState<string>(
+    "Limpar o histórico de cálculos"
   )
   const [history, setHistory] = useState<Array<string>>(() => {
     // Carrega o histórico do localStorage
@@ -43,10 +46,10 @@ const Inputs: React.FC = () => {
         console.error("Erro ao copiar: ", err)
       })
 
-    setTooltipText("Copiado!")
+    setTooltipClipboard("Copiado!")
 
     setTimeout(() => {
-      setTooltipText("Copie o resultado para a área de transferência")
+      setTooltipClipboard("Copie o resultado para a área de transferência")
     }, 1500)
   }
 
@@ -59,8 +62,8 @@ const Inputs: React.FC = () => {
   }
 
   const addToHistory = () => {
-    if (d !== undefined) {
-      const newEntry = `(${c} * ${b}) / ${a} = ${d.toFixed(decimalPlaces)}`
+    if (d !== undefined && !isNaN(d)) {
+      const newEntry = `${a} esta para ${b} assim como ${c} está para ${d.toFixed(decimalPlaces)}`
       setHistory((prev) => {
         const updatedHistory = [...prev, newEntry]
         // Salva no localStorage em tempo real
@@ -68,6 +71,12 @@ const Inputs: React.FC = () => {
           "calculationHistory",
           JSON.stringify(updatedHistory)
         )
+
+        setTooltipHistory("Adicionado ao histórico de cálculos")
+
+        setTimeout(() => {
+          setTooltipHistory("Limpar o histórico de cálculos")
+        }, 1500)
         return updatedHistory
       })
     }
@@ -179,7 +188,8 @@ const Inputs: React.FC = () => {
         </div>
         <div className="flex gap-2">
           <button
-            className="btn btn-neutral w-36 border-[1px] border-[#818180]"
+            className="btn btn-neutral tooltip w-36 border-[1px] border-[#818180]"
+            data-tip={tooltipHistory}
             onClick={addToHistory}
           >
             <div className="flex gap-2 items-center">
@@ -199,7 +209,7 @@ const Inputs: React.FC = () => {
         </div>
         <button
           className="btn btn-primary tooltip border-[1px] border-[#239A8E]"
-          data-tip={tooltipText}
+          data-tip={tooltipClipboard}
           onClick={copyToClipboard}
         >
           <div className="flex justify-center items-center gap-2">

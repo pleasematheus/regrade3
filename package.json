@@ -1,11 +1,11 @@
 {
   "name": "regrade3",
   "private": true,
-  "version": "1.7.4",
+  "version": "1.8.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && npm run tailb && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "tailw": "tailwindcss -i ./src/index.css -o ./src/output.css --watch",
