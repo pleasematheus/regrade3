@@ -19,7 +19,7 @@ const Inputs: React.FC = () => {
     "Copie o resultado para a área de transferência"
   )
   const [tooltipHistory, setTooltipHistory] = useState<string>(
-    "Limpar o histórico de cálculos"
+    "Adicionar ao histórico de cálculos"
   )
   const [history, setHistory] = useState<Array<string>>(() => {
     // Carrega o histórico do localStorage
@@ -63,7 +63,7 @@ const Inputs: React.FC = () => {
 
   const addToHistory = () => {
     if (d !== undefined && !isNaN(d)) {
-      const newEntry = `${a} esta para ${b} assim como ${c} está para ${d.toFixed(decimalPlaces)}`
+      const newEntry = `${a} está para ${b} assim como ${c} está para ${d.toFixed(decimalPlaces)}`
       setHistory((prev) => {
         const updatedHistory = [...prev, newEntry]
         // Salva no localStorage em tempo real
@@ -97,6 +97,7 @@ const Inputs: React.FC = () => {
   return (
     <div className="grid place-items-center gap-3">
       <div className="flex items-center">
+        {/* Campo A */}
         <input
           type="number"
           className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
@@ -109,6 +110,7 @@ const Inputs: React.FC = () => {
         <span className="w-24 text-center cg-medium bg-base-200 leading-8">
           está para
         </span>
+        {/* Campo B */}
         <input
           type="number"
           className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
@@ -121,6 +123,7 @@ const Inputs: React.FC = () => {
       </div>
       <span className="w-24 text-center cg-bold text-md">ASSIM COMO</span>
       <div className="flex items-center">
+        {/* Campo C */}
         <input
           type="number"
           className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
@@ -133,6 +136,7 @@ const Inputs: React.FC = () => {
         <span className="w-24 text-center cg-medium bg-base-200 leading-8">
           está para
         </span>
+        {/* Campo D (resultado) */}
         <input
           type="number"
           className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out"
