@@ -217,7 +217,7 @@ const Inputs: React.FC = () => {
           </button>
         </div>
         <button
-          className="btn btn-primary tooltip border-[1px] border-[#239A8E] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
+          className="btn btn-primary tooltip tooltip-primary border-[1px] border-[#239A8E] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
           data-tip={tooltipClipboard}
           onClick={copyToClipboard}
         >

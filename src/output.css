@@ -2048,6 +2048,11 @@ html {
   bottom: var(--tooltip-tail-offset);
 }
 
+.tooltip-primary {
+  --tooltip-color: var(--fallback-p,oklch(var(--p)/1));
+  --tooltip-text-color: var(--fallback-pc,oklch(var(--pc)/1));
+}
+
 .m-3 {
   margin: 0.75rem;
 }
