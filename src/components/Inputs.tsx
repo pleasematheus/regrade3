@@ -72,10 +72,10 @@ const Inputs: React.FC = () => {
           JSON.stringify(updatedHistory)
         )
 
-        setTooltipHistory("Adicionado ao histórico de cálculos")
+        setTooltipHistory("Adicionado")
 
         setTimeout(() => {
-          setTooltipHistory("Limpar o histórico de cálculos")
+          setTooltipHistory("Adicionar ao histórico de cálculos")
         }, 1500)
         return updatedHistory
       })
