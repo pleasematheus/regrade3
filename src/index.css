@@ -41,3 +41,8 @@
   color: var(--baby-powder);
   background-color: var(--red-pantone);
 }
+
+.resultado::placeholder {
+  color: var(--baby-powder);
+  opacity: 1;
+}

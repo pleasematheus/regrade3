@@ -100,12 +100,14 @@ const Inputs: React.FC = () => {
         {/* Campo A */}
         <input
           type="number"
-          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
+          // className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
+          className="input input-bordered p-4 w-32 transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
           maxLength={18}
           onChange={(e) =>
             setA(e.target.value ? Number(e.target.value) : undefined)
           }
           value={a ?? ""}
+          placeholder="Campo A"
         />
         <span className="w-24 text-center cg-medium bg-base-200 leading-8">
           está para
@@ -113,12 +115,13 @@ const Inputs: React.FC = () => {
         {/* Campo B */}
         <input
           type="number"
-          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
+          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
           maxLength={18}
           onChange={(e) =>
             setB(e.target.value ? Number(e.target.value) : undefined)
           }
           value={b ?? ""}
+          placeholder="Campo B"
         />
       </div>
       <span className="w-24 text-center cg-bold text-md">ASSIM COMO</span>
@@ -126,12 +129,13 @@ const Inputs: React.FC = () => {
         {/* Campo C */}
         <input
           type="number"
-          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
+          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
           maxLength={18}
           onChange={(e) =>
             setC(e.target.value ? Number(e.target.value) : undefined)
           }
           value={c ?? ""}
+          placeholder="Campo C"
         />
         <span className="w-24 text-center cg-medium bg-base-200 leading-8">
           está para
@@ -139,18 +143,19 @@ const Inputs: React.FC = () => {
         {/* Campo D (resultado) */}
         <input
           type="number"
-          className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out"
+          className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out border-[1px] border-[#239A8E] focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
           maxLength={18}
           readOnly
           value={d?.toFixed(decimalPlaces) ?? ""}
+          placeholder="Resultado"
         />
       </div>
       <div className="grid gap-2">
         <div className="form-control">
-          <label className="label cursor-pointer rounded-lg p-3 hover:bg-base-400 transition-all duration-300 ease-in-out active:bg-base-200">
+          <label className="label cursor-pointer rounded-lg p-3 hover:bg-base-400 transition duration-300 ease-in-out active:bg-base-200">
             <input
               type="checkbox"
-              className="toggle"
+              className="toggle transition-all duration-300 ease-in-out focus:ring-current focus:outline-2 focus:outline-offset-0 focus:outline-current"
               checked={isInverselyProportional}
               onChange={() =>
                 setIsInverselyProportional(!isInverselyProportional)
@@ -162,7 +167,7 @@ const Inputs: React.FC = () => {
           </label>
         </div>
         <button
-          className="btn btn-secondary border-[1px] border-[#BE192C]"
+          className="btn btn-secondary border-[1px] border-[#BE192C] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
           onClick={clearInputs}
         >
           <div className="flex gap-2 items-center">
@@ -172,7 +177,7 @@ const Inputs: React.FC = () => {
         </button>
         <div className="flex gap-2">
           <button
-            className="btn btn-accent w-36 border-[1px] border-[#D48617]"
+            className="btn btn-accent w-36 border-[1px] border-[#D48617] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0"
             onClick={increaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -181,7 +186,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-accent w-36 border-[1px] border-[#D48617]"
+            className="btn btn-accent w-36 border-[1px] border-[#D48617] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0"
             onClick={decreaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -192,7 +197,7 @@ const Inputs: React.FC = () => {
         </div>
         <div className="flex gap-2">
           <button
-            className="btn btn-neutral tooltip w-36 border-[1px] border-[#818180]"
+            className="btn btn-neutral tooltip w-36 border-[1px] border-[#818180] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#818180] focus:outline-0"
             data-tip={tooltipHistory}
             onClick={addToHistory}
           >
@@ -202,7 +207,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-secondary w-36 border-[1px] border-[#BE192C]"
+            className="btn btn-secondary w-36 border-[1px] border-[#BE192C] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
             onClick={clearHistory}
           >
             <div className="flex gap-2 items-center">
@@ -212,7 +217,7 @@ const Inputs: React.FC = () => {
           </button>
         </div>
         <button
-          className="btn btn-primary tooltip border-[1px] border-[#239A8E]"
+          className="btn btn-primary tooltip border-[1px] border-[#239A8E] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
           data-tip={tooltipClipboard}
           onClick={copyToClipboard}
         >

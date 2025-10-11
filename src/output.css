@@ -1057,6 +1057,12 @@ html {
   }
 }
 
+.avatar.placeholder > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (hover:hover) {
   .label a:hover {
     --tw-text-opacity: 1;
@@ -1711,6 +1717,15 @@ html {
   outline-offset: 2px;
 }
 
+:where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn).focus, :where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn):focus, :where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):is(summary):not(.active, .btn):focus-visible, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn).focus, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn):focus, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):is(summary):not(.active, .btn):focus-visible {
+  cursor: pointer;
+  background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 .mockup-browser .mockup-browser-toolbar .input {
   position: relative;
   margin-left: auto;
@@ -2221,11 +2236,6 @@ html {
   border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
 }
 
-.border-\[red\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 0 0 / var(--tw-border-opacity, 1));
-}
-
 .bg-base-200 {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity, 1)));
@@ -2301,19 +2311,6 @@ html {
   color: rgb(59 130 246 / var(--tw-text-opacity, 1));
 }
 
-.outline-none {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
-.ring-offset-0 {
-  --tw-ring-offset-width: 0px;
-}
-
-.ring-offset-fuchsia-200 {
-  --tw-ring-offset-color: #f5d0fe;
-}
-
 .drop-shadow-sm {
   --tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -2376,9 +2373,14 @@ html {
   background-color: var(--red-pantone);
 }
 
-.hover\:border-\[\#E71D36\]:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(231 29 54 / var(--tw-border-opacity, 1));
+.resultado::-moz-placeholder {
+  color: var(--baby-powder);
+  opacity: 1;
+}
+
+.resultado::placeholder {
+  color: var(--baby-powder);
+  opacity: 1;
 }
 
 .hover\:text-sky-500:hover {
@@ -2386,19 +2388,12 @@ html {
   color: rgb(14 165 233 / var(--tw-text-opacity, 1));
 }
 
-.hover\:outline-none:hover {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+.focus\:outline:focus {
+  outline-style: solid;
 }
 
-.focus\:border-\[\#E71D36\]:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(231 29 54 / var(--tw-border-opacity, 1));
-}
-
-.focus\:outline-none:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+.focus\:outline-0:focus {
+  outline-width: 0px;
 }
 
 .focus\:outline-2:focus {
@@ -2409,14 +2404,8 @@ html {
   outline-offset: 0px;
 }
 
-.focus\:outline-\[\#2EC4B6\]:focus {
-  outline-color: #2EC4B6;
-}
-
-.focus\:ring:focus {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+.focus\:outline-current:focus {
+  outline-color: currentColor;
 }
 
 .focus\:ring-2:focus {
@@ -2425,19 +2414,34 @@ html {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.focus\:ring-\[\#2EC4B6\]:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(46 196 182 / var(--tw-ring-opacity, 1));
+.focus\:ring-0:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.focus\:ring-\[red\]:focus {
+.focus\:ring-\[\#239A8E\]:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(255 0 0 / var(--tw-ring-opacity, 1));
+  --tw-ring-color: rgb(35 154 142 / var(--tw-ring-opacity, 1));
 }
 
-.focus\:ring-\[\#E71D36\]:focus {
+.focus\:ring-current:focus {
+  --tw-ring-color: currentColor;
+}
+
+.focus\:ring-\[\#BE192C\]:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(231 29 54 / var(--tw-ring-opacity, 1));
+  --tw-ring-color: rgb(190 25 44 / var(--tw-ring-opacity, 1));
+}
+
+.focus\:ring-\[\#D48617\]:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(212 134 23 / var(--tw-ring-opacity, 1));
+}
+
+.focus\:ring-\[\#818180\]:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(129 129 128 / var(--tw-ring-opacity, 1));
 }
 
 .active\:bg-base-200:active {
