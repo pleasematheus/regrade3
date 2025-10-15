@@ -24,7 +24,7 @@ export function WordPullUp(props: WordPullUpProps) {
 
   const words = props.renderText
   return (
-    <motion.h1
+    <motion.span
       variants={container}
       initial="hidden"
       animate="show"
@@ -45,6 +45,6 @@ export function WordPullUp(props: WordPullUpProps) {
           {word === "" ? <span>&nbsp;</span> : word}
         </motion.span>
       ))}
-    </motion.h1>
+    </motion.span>
   )
 }

@@ -1717,15 +1717,6 @@ html {
   outline-offset: 2px;
 }
 
-:where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn).focus, :where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):not(summary, .active, .btn):focus, :where(.menu li:not(.menu-title, .disabled) > *:not(ul, details, .menu-title)):is(summary):not(.active, .btn):focus-visible, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn).focus, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):not(summary, .active, .btn):focus, :where(.menu li:not(.menu-title, .disabled) > details > summary:not(.menu-title)):is(summary):not(.active, .btn):focus-visible {
-  cursor: pointer;
-  background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
-  --tw-text-opacity: 1;
-  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
 .mockup-browser .mockup-browser-toolbar .input {
   position: relative;
   margin-left: auto;
@@ -2393,10 +2384,6 @@ html {
   color: rgb(14 165 233 / var(--tw-text-opacity, 1));
 }
 
-.focus\:outline:focus {
-  outline-style: solid;
-}
-
 .focus\:outline-0:focus {
   outline-width: 0px;
 }
@@ -2419,19 +2406,14 @@ html {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.focus\:ring-0:focus {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-
 .focus\:ring-\[\#239A8E\]:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(35 154 142 / var(--tw-ring-opacity, 1));
 }
 
-.focus\:ring-current:focus {
-  --tw-ring-color: currentColor;
+.focus\:ring-\[\#818180\]:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(129 129 128 / var(--tw-ring-opacity, 1));
 }
 
 .focus\:ring-\[\#BE192C\]:focus {
@@ -2444,9 +2426,8 @@ html {
   --tw-ring-color: rgb(212 134 23 / var(--tw-ring-opacity, 1));
 }
 
-.focus\:ring-\[\#818180\]:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(129 129 128 / var(--tw-ring-opacity, 1));
+.focus\:ring-current:focus {
+  --tw-ring-color: currentColor;
 }
 
 .active\:bg-base-200:active {

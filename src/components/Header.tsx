@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { WordPullUp } from "./wordpullup"
 
-export default () => {
+const Header = () => {
   const [theme, setTheme] = useState("dark")
 
   useEffect(() => {
@@ -60,3 +60,5 @@ export default () => {
     </header>
   )
 }
+
+export default Header
