@@ -29,28 +29,28 @@ const Inputs: React.FC = () => {
   const [isInverselyProportional, setIsInverselyProportional] = useState(false)
 
   useEffect(() => {
-    switch (isInverselyProportional) {
-      case false:
-        setD((Number(c) * Number(b)) / Number(a))
-        break
-      case true:
-        setD((Number(a) * Number(b)) / Number(c))
-        break
+    const [numA, numB, numC] = [a, b, c].map(Number)
+    const divisor = isInverselyProportional ? numC : numA
+
+    if ([numA, numB, numC].every((n) => !isNaN(n)) && divisor !== 0) {
+      setD(isInverselyProportional ? (numA * numB) / numC : (numC * numB) / numA)
     }
   }, [a, b, c, isInverselyProportional])
 
   const copyToClipboard = () => {
-    navigator.clipboard
-      .writeText(d?.toFixed(decimalPlaces) || "")
-      .catch((err) => {
-        console.error("Erro ao copiar: ", err)
-      })
+    if (d !== undefined && !isNaN(d)) {
+      navigator.clipboard
+        .writeText(d?.toFixed(decimalPlaces) || "")
+        .catch((err) => {
+          console.error("Erro ao copiar: ", err)
+        })
 
-    setTooltipClipboard("Copiado!")
+      setTooltipClipboard("Copiado!")
 
-    setTimeout(() => {
-      setTooltipClipboard("Copie o resultado para a área de transferência")
-    }, 1500)
+      setTimeout(() => {
+        setTooltipClipboard("Copie o resultado para a área de transferência")
+      }, 1500)
+    }
   }
 
   const increaseDecimalPlaces = () => {
