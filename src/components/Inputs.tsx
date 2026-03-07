@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 import ClipboardIcon from "../assets/clipboard.svg"
 import PlusIcon from "../assets/plus.svg"
@@ -16,10 +16,10 @@ const Inputs: React.FC = () => {
   const [d, setD] = useState<number | undefined>(undefined)
   const [decimalPlaces, setDecimalPlaces] = useState<number>(2)
   const [tooltipClipboard, setTooltipClipboard] = useState<string>(
-    "Copie o resultado para a área de transferência"
+    "Copie o resultado para a área de transferência",
   )
   const [tooltipHistory, setTooltipHistory] = useState<string>(
-    "Adicionar ao histórico de cálculos"
+    "Adicionar ao histórico de cálculos",
   )
   const [history, setHistory] = useState<Array<string>>(() => {
     // Carrega o histórico do localStorage
@@ -28,12 +28,27 @@ const Inputs: React.FC = () => {
   })
   const [isInverselyProportional, setIsInverselyProportional] = useState(false)
 
-  useEffect(() => {
-    const [numA, numB, numC] = [a, b, c].map(Number)
-    const divisor = isInverselyProportional ? numC : numA
+  const inputARef = useRef<HTMLInputElement>(null)
+  const inputBRef = useRef<HTMLInputElement>(null)
+  const inputCRef = useRef<HTMLInputElement>(null)
 
-    if ([numA, numB, numC].every((n) => !isNaN(n)) && divisor !== 0) {
-      setD(isInverselyProportional ? (numA * numB) / numC : (numC * numB) / numA)
+  const handleEnterKey =
+    (nextRef: React.RefObject<HTMLInputElement>) =>
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        e.preventDefault()
+        nextRef.current?.focus()
+      }
+    }
+
+  useEffect(() => {
+    // Validação: todos devem ser números válidos e divisor diferente de zero
+    const divisor = isInverselyProportional ? c : a
+
+    if (a && b && c && divisor !== 0) {
+      setD(isInverselyProportional ? (a * b) / c : (c * b) / a)
+    } else {
+      setD(undefined) // ou '' dependendo do tipo do seu estado
     }
   }, [a, b, c, isInverselyProportional])
 
@@ -69,7 +84,7 @@ const Inputs: React.FC = () => {
         // Salva no localStorage em tempo real
         localStorage.setItem(
           "calculationHistory",
-          JSON.stringify(updatedHistory)
+          JSON.stringify(updatedHistory),
         )
 
         setTooltipHistory("Adicionado")
@@ -99,6 +114,8 @@ const Inputs: React.FC = () => {
       <div className="flex items-center">
         {/* Campo A */}
         <input
+          ref={inputARef}
+          autoFocus
           type="number"
           // className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
           className="input input-bordered p-4 w-32 transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
@@ -106,6 +123,7 @@ const Inputs: React.FC = () => {
           onChange={(e) =>
             setA(e.target.value ? Number(e.target.value) : undefined)
           }
+          onKeyDown={handleEnterKey(inputBRef)}
           value={a ?? ""}
           placeholder="Campo A"
         />
@@ -114,12 +132,14 @@ const Inputs: React.FC = () => {
         </span>
         {/* Campo B */}
         <input
+          ref={inputBRef}
           type="number"
           className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
           maxLength={18}
           onChange={(e) =>
             setB(e.target.value ? Number(e.target.value) : undefined)
           }
+          onKeyDown={handleEnterKey(inputCRef)}
           value={b ?? ""}
           placeholder="Campo B"
         />
@@ -128,12 +148,14 @@ const Inputs: React.FC = () => {
       <div className="flex items-center">
         {/* Campo C */}
         <input
+          ref={inputCRef}
           type="number"
           className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
           maxLength={18}
           onChange={(e) =>
             setC(e.target.value ? Number(e.target.value) : undefined)
           }
+          onKeyDown={handleEnterKey(inputARef)}
           value={c ?? ""}
           placeholder="Campo C"
         />

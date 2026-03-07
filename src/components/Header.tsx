@@ -33,6 +33,7 @@ const Header = () => {
           {/* Checkbox hidden */}
           <input
             type="checkbox"
+            tabIndex={-1}
             onChange={toggleTheme}
             checked={theme === "dark"}
             className="theme-controller"
