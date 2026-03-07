@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && npm run tailb && vite build",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "tailw": "tailwindcss -i ./src/index.css -o ./src/output.css --watch",
-    "tailb": "tailwindcss -i ./src/index.css -o ./src/output.css --minify"
+    "tailw": "npx @tailwindcss/cli -i ./src/index.css -o ./src/output.css --watch",
+    "tailb": "npx @tailwindcss/cli -i ./src/index.css -o ./src/output.css --minify"
   },
   "dependencies": {
     "clsx": "^2.1.1",
