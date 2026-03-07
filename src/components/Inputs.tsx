@@ -33,7 +33,7 @@ const Inputs: React.FC = () => {
   const inputCRef = useRef<HTMLInputElement>(null)
 
   const handleEnterKey =
-    (nextRef: React.RefObject<HTMLInputElement>) =>
+    (nextRef: React.RefObject<HTMLInputElement | null>) =>
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter") {
         e.preventDefault()
