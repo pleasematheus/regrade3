@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="w-full bg-base-200 text-center py-2 border-t-[1px] border-base-300">
-      <p>© 2024. Todos os direitos reservados.</p>
+    <footer className="w-full bg-base-200 text-center py-2 border-t border-base-300">
+      <p>© 2024–{new Date().getFullYear()}. Todos os direitos reservados.</p>
       <p>
         Feito com <span title="amor">❤️</span> e carinho por{" "}
         <a
@@ -12,7 +12,9 @@ const Footer = () => {
           pleasematheus
         </a>
       </p>
-      <p>;)</p>
+      <p className="text-xs text-base-content/40 mt-1">
+        v{__APP_VERSION__} · {__COMMIT_HASH__}
+      </p>
     </footer>
   )
 }
