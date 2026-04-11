@@ -10,6 +10,36 @@
 @import url("cabinet-grotesk.css");
 
 @import 'tailwindcss';
+@plugin "daisyui" {
+  themes: light, dark;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  color-scheme: light;
+  --color-primary: #2EC4B6;
+  --color-secondary: #E71D36;
+  --color-accent: #FF9F1C;
+  --color-neutral: #898A88;
+  --color-base-100: #fcfcfc;
+  --color-base-200: #efefef;
+  --color-base-300: #dcdcdc;
+  --color-base-400: #bdbdbd;
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  color-scheme: dark;
+  --color-primary: #2EC4B6;
+  --color-secondary: #E71D36;
+  --color-accent: #FF9F1C;
+  --color-neutral: #898A88;
+  --color-base-100: #141414;
+  --color-base-200: #3d3d3d;
+  --color-base-300: #454545;
+  --color-base-400: #4f4f4f;
+}
 
 :root {
   --night: #141414;
@@ -55,4 +85,23 @@
 .input:focus-within {
   outline: none !important;
   box-shadow: 0 0 0 2px #898A88 !important;
+}
+
+.label .label-text {
+  color: var(--color-base-content) !important;
+}
+
+@keyframes button-pop {
+  0% { transform: scale(0.98); }
+  40% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.btn {
+  animation: button-pop 0.25s ease-out;
+}
+
+.btn:active:not(.btn-active) {
+  transform: scale(0.97) !important;
+  translate: 0 0 !important;
 }

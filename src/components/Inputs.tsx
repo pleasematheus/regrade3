@@ -132,7 +132,7 @@ const Inputs: React.FC = () => {
           autoFocus
           type="text"
           inputMode="numeric"
-          className="input input-bordered p-4 w-32 transition-all duration-300 ease-in-out"
+          className="input input-bordered rounded-lg p-4 h-12 w-32 text-base transition-all duration-300 ease-in-out"
           maxLength={18}
           onChange={(e) => setA(e.target.value.replace(/\D/g, ""))}
           onKeyDown={handleEnterKeyA}
@@ -147,7 +147,7 @@ const Inputs: React.FC = () => {
           ref={inputBRef}
           type="text"
           inputMode="numeric"
-          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
+          className="input input-bordered rounded-lg p-4 h-12 w-32 text-base transition-all duration-300 ease-in-out"
           maxLength={18}
           onChange={(e) => setB(e.target.value.replace(/\D/g, ""))}
           onKeyDown={handleEnterKeyB}
@@ -162,7 +162,7 @@ const Inputs: React.FC = () => {
           ref={inputCRef}
           type="text"
           inputMode="numeric"
-          className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
+          className="input input-bordered rounded-lg p-4 h-12 w-32 text-base transition-all duration-300 ease-in-out"
           maxLength={18}
           onChange={(e) => setC(e.target.value.replace(/\D/g, ""))}
           onKeyDown={handleEnterKeyC}
@@ -176,7 +176,7 @@ const Inputs: React.FC = () => {
         <input
           type="text"
           inputMode="numeric"
-          className="resultado input input-bordered p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out border border-[#239A8E]"
+          className="resultado input input-bordered rounded-lg p-4 h-12 w-32 text-base max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out border border-[#239A8E]"
           maxLength={18}
           readOnly
           value={typeof d === "number" ? d.toFixed(decimalPlaces) : ""}
@@ -187,7 +187,7 @@ const Inputs: React.FC = () => {
       {/* Botões de ação */}
       <div className="grid gap-2">
         <div className="form-control">
-          <label className="label cursor-pointer rounded-lg p-3 hover:bg-base-400 transition duration-300 ease-in-out active:bg-base-200">
+          <label className="label cursor-pointer rounded-md p-3 w-full justify-between hover:bg-base-400 transition duration-300 ease-in-out active:bg-base-200">
             <input
               type="checkbox"
               className="toggle transition-all duration-300 ease-in-out focus:ring-current focus:outline-2 focus:outline-offset-0 focus:outline-current"
@@ -196,13 +196,13 @@ const Inputs: React.FC = () => {
                 setIsInverselyProportional(!isInverselyProportional)
               }
             />
-            <span className="label-text font-medium">
+            <span className="label-text font-medium text-sm text-current">
               Inversamente proporcional
             </span>
           </label>
         </div>
         <button
-          className="btn btn-secondary border border-[#BE192C] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
+          className="btn btn-secondary border border-[#BE192C] rounded-lg h-12 text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
           onClick={clearInputs}
         >
           <div className="flex gap-2 items-center">
@@ -212,7 +212,7 @@ const Inputs: React.FC = () => {
         </button>
         <div className="flex gap-2">
           <button
-            className="btn btn-accent w-36 border border-[#D48617] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0"
+            className="btn btn-accent w-36 border border-[#D48617] rounded-lg h-12 text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0 leading-none"
             onClick={increaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -221,7 +221,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-accent w-36 border border-[#D48617] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0"
+            className="btn btn-accent w-36 border border-[#D48617] rounded-lg h-12 text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0 leading-none"
             onClick={decreaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -232,7 +232,7 @@ const Inputs: React.FC = () => {
         </div>
         <div className="flex gap-2">
           <button
-            className="btn btn-neutral tooltip w-36 border border-[#818180] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#818180] focus:outline-0"
+            className="btn btn-neutral tooltip w-36 border border-[#818180] rounded-lg h-12 text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#818180] focus:outline-0 leading-none"
             data-tip={tooltipHistory}
             onClick={addToHistory}
           >
@@ -242,7 +242,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-secondary w-36 border border-[#BE192C] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
+            className="btn btn-secondary w-36 border border-[#BE192C] rounded-lg h-12 text-sm text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0 leading-none"
             onClick={clearHistory}
           >
             <div className="flex gap-2 items-center">
@@ -252,7 +252,7 @@ const Inputs: React.FC = () => {
           </button>
         </div>
         <button
-          className="btn btn-primary tooltip tooltip-primary border border-[#239A8E] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
+          className="btn btn-primary tooltip tooltip-primary border border-[#239A8E] rounded-lg h-12 text-sm text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0 leading-none"
           data-tip={tooltipClipboard}
           onClick={copyToClipboard}
         >
