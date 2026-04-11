@@ -9,9 +9,7 @@
 
 @import url("cabinet-grotesk.css");
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
 
 :root {
   --night: #141414;
@@ -45,4 +43,16 @@
 .resultado::placeholder {
   color: var(--baby-powder);
   opacity: 1;
+}
+
+.resultado.input:focus,
+.resultado.input:focus-within {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #239A8E !important;
+}
+
+.input:focus,
+.input:focus-within {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #898A88 !important;
 }

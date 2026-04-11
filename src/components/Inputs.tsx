@@ -124,6 +124,7 @@ const Inputs: React.FC = () => {
 
   return (
     <div className="grid place-items-center gap-3">
+      {/* Campos de entrada e resultado */}
       <div className="flex items-center">
         {/* Campo A */}
         <input
@@ -131,8 +132,7 @@ const Inputs: React.FC = () => {
           autoFocus
           type="text"
           inputMode="numeric"
-          // className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
-          className="input input-bordered p-4 w-32 transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
+          className="input input-bordered p-4 w-32 transition-all duration-300 ease-in-out"
           maxLength={18}
           onChange={(e) => setA(e.target.value.replace(/\D/g, ""))}
           onKeyDown={handleEnterKeyA}
@@ -176,13 +176,15 @@ const Inputs: React.FC = () => {
         <input
           type="text"
           inputMode="numeric"
-          className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out border border-[#239A8E] focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
+          className="resultado input input-bordered p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out border border-[#239A8E]"
           maxLength={18}
           readOnly
           value={typeof d === "number" ? d.toFixed(decimalPlaces) : ""}
           placeholder="Resultado"
         />
       </div>
+
+      {/* Botões de ação */}
       <div className="grid gap-2">
         <div className="form-control">
           <label className="label cursor-pointer rounded-lg p-3 hover:bg-base-400 transition duration-300 ease-in-out active:bg-base-200">
