@@ -2,16 +2,15 @@ import { useEffect, useState } from "react"
 import { WordPullUp } from "./wordpullup"
 
 const Header = () => {
-  const [theme, setTheme] = useState("dark")
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("theme")
+    return savedTheme || "dark"
+  })
 
   useEffect(() => {
-    // Verifica o tema salvo no localStorage
-    const savedTheme = localStorage.getItem("theme")
-    if (savedTheme) {
-      setTheme(savedTheme)
-      document.documentElement.setAttribute("data-theme", savedTheme)
-    }
-  }, [])
+    // Aplica o tema ao documento
+    document.documentElement.setAttribute("data-theme", theme)
+  }, [theme])
 
   // Atualiza o tema e salva no localStorage
   const toggleTheme = () => {

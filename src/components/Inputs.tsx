@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useRef, useMemo } from "react";
 
-import ClipboardIcon from "../assets/clipboard.svg"
-import PlusIcon from "../assets/plus.svg"
-import LessIcon from "../assets/dash.svg"
-import HistoryIcon from "../assets/clock-history.svg"
-import TrashIcon from "../assets/trash.svg"
-import XIcon from "../assets/x-circle-fill.svg"
+import ClipboardIcon from "../assets/clipboard.svg";
+import PlusIcon from "../assets/plus.svg";
+import LessIcon from "../assets/dash.svg";
+import HistoryIcon from "../assets/clock-history.svg";
+import TrashIcon from "../assets/trash.svg";
+import XIcon from "../assets/x-circle-fill.svg";
 
-import History from "./History"
+import History from "./History";
 
 const Inputs: React.FC = () => {
-  const [a, setA] = useState<number | undefined>(undefined)
-  const [b, setB] = useState<number | undefined>(undefined)
-  const [c, setC] = useState<number | undefined>(undefined)
-  const [d, setD] = useState<number | undefined>(undefined)
+  const [a, setA] = useState<number | string>("")
+  const [b, setB] = useState<number | string>("")
+  const [c, setC] = useState<number | string>("")
   const [decimalPlaces, setDecimalPlaces] = useState<number>(2)
   const [tooltipClipboard, setTooltipClipboard] = useState<string>(
     "Copie o resultado para a área de transferência",
@@ -32,6 +31,20 @@ const Inputs: React.FC = () => {
   const inputBRef = useRef<HTMLInputElement>(null)
   const inputCRef = useRef<HTMLInputElement>(null)
 
+  const d = useMemo(() => {
+    const numA = Number(a)
+    const numB = Number(b)
+    const numC = Number(c)
+    const divisor = isInverselyProportional ? numC : numA
+
+    if (a && b && c && divisor !== 0) {
+      return isInverselyProportional
+        ? (numA * numB) / numC
+        : (numC * numB) / numA
+    }
+    return ""
+  }, [a, b, c, isInverselyProportional])
+
   const handleEnterKey =
     (nextRef: React.RefObject<HTMLInputElement | null>) =>
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -41,21 +54,22 @@ const Inputs: React.FC = () => {
       }
     }
 
-  useEffect(() => {
-    // Validação: todos devem ser números válidos e divisor diferente de zero
-    const divisor = isInverselyProportional ? c : a
+  const handleEnterKeyA = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    handleEnterKey(inputBRef)(e)
+  }
 
-    if (a && b && c && divisor !== 0) {
-      setD(isInverselyProportional ? (a * b) / c : (c * b) / a)
-    } else {
-      setD(undefined) // ou '' dependendo do tipo do seu estado
-    }
-  }, [a, b, c, isInverselyProportional])
+  const handleEnterKeyB = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    handleEnterKey(inputCRef)(e)
+  }
+
+  const handleEnterKeyC = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    handleEnterKey(inputARef)(e)
+  }
 
   const copyToClipboard = () => {
-    if (d !== undefined && !isNaN(d)) {
+    if (d !== undefined && !isNaN(Number(d))) {
       navigator.clipboard
-        .writeText(d?.toFixed(decimalPlaces) || "")
+        .writeText(Number(d).toFixed(decimalPlaces) || "")
         .catch((err) => {
           console.error("Erro ao copiar: ", err)
         })
@@ -77,8 +91,8 @@ const Inputs: React.FC = () => {
   }
 
   const addToHistory = () => {
-    if (d !== undefined && !isNaN(d)) {
-      const newEntry = `${a} está para ${b} assim como ${c} está para ${d.toFixed(decimalPlaces)}`
+    if (d !== undefined && !isNaN(Number(d))) {
+      const newEntry = `${a} está para ${b} assim como ${c} está para ${Number(d).toFixed(decimalPlaces)}`
       setHistory((prev) => {
         const updatedHistory = [...prev, newEntry]
         // Salva no localStorage em tempo real
@@ -103,10 +117,9 @@ const Inputs: React.FC = () => {
   }
 
   const clearInputs = () => {
-    setA(undefined)
-    setB(undefined)
-    setC(undefined)
-    setD(undefined)
+    setA("")
+    setB("")
+    setC("")
   }
 
   return (
@@ -116,14 +129,13 @@ const Inputs: React.FC = () => {
         <input
           ref={inputARef}
           autoFocus
-          type="number"
+          type="text"
+          inputMode="numeric"
           // className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out"
           className="input input-bordered p-4 w-32 transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
           maxLength={18}
-          onChange={(e) =>
-            setA(e.target.value ? Number(e.target.value) : undefined)
-          }
-          onKeyDown={handleEnterKey(inputBRef)}
+          onChange={(e) => setA(e.target.value.replace(/\D/g, ""))}
+          onKeyDown={handleEnterKeyA}
           value={a ?? ""}
           placeholder="Campo A"
         />
@@ -133,13 +145,12 @@ const Inputs: React.FC = () => {
         {/* Campo B */}
         <input
           ref={inputBRef}
-          type="number"
+          type="text"
+          inputMode="numeric"
           className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
           maxLength={18}
-          onChange={(e) =>
-            setB(e.target.value ? Number(e.target.value) : undefined)
-          }
-          onKeyDown={handleEnterKey(inputCRef)}
+          onChange={(e) => setB(e.target.value.replace(/\D/g, ""))}
+          onKeyDown={handleEnterKeyB}
           value={b ?? ""}
           placeholder="Campo B"
         />
@@ -149,13 +160,12 @@ const Inputs: React.FC = () => {
         {/* Campo C */}
         <input
           ref={inputCRef}
-          type="number"
+          type="text"
+          inputMode="numeric"
           className="input input-bordered p-4 w-32 max-w-xs transition-all duration-300 ease-in-out focus:ring-2 focus:ring-current focus:outline-0"
           maxLength={18}
-          onChange={(e) =>
-            setC(e.target.value ? Number(e.target.value) : undefined)
-          }
-          onKeyDown={handleEnterKey(inputARef)}
+          onChange={(e) => setC(e.target.value.replace(/\D/g, ""))}
+          onKeyDown={handleEnterKeyC}
           value={c ?? ""}
           placeholder="Campo C"
         />
@@ -164,11 +174,12 @@ const Inputs: React.FC = () => {
         </span>
         {/* Campo D (resultado) */}
         <input
-          type="number"
-          className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out border-[1px] border-[#239A8E] focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
+          type="text"
+          inputMode="numeric"
+          className="resultado input input-bordered input-primary p-4 w-32 max-w-xs bg-primary text-black cg-bold transition-all duration-300 ease-in-out border border-[#239A8E] focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
           maxLength={18}
           readOnly
-          value={d?.toFixed(decimalPlaces) ?? ""}
+          value={typeof d === "number" ? d.toFixed(decimalPlaces) : ""}
           placeholder="Resultado"
         />
       </div>
@@ -189,7 +200,7 @@ const Inputs: React.FC = () => {
           </label>
         </div>
         <button
-          className="btn btn-secondary border-[1px] border-[#BE192C] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
+          className="btn btn-secondary border border-[#BE192C] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
           onClick={clearInputs}
         >
           <div className="flex gap-2 items-center">
@@ -199,7 +210,7 @@ const Inputs: React.FC = () => {
         </button>
         <div className="flex gap-2">
           <button
-            className="btn btn-accent w-36 border-[1px] border-[#D48617] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0"
+            className="btn btn-accent w-36 border border-[#D48617] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0"
             onClick={increaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -208,7 +219,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-accent w-36 border-[1px] border-[#D48617] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0"
+            className="btn btn-accent w-36 border border-[#D48617] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0"
             onClick={decreaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -219,7 +230,7 @@ const Inputs: React.FC = () => {
         </div>
         <div className="flex gap-2">
           <button
-            className="btn btn-neutral tooltip w-36 border-[1px] border-[#818180] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#818180] focus:outline-0"
+            className="btn btn-neutral tooltip w-36 border border-[#818180] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#818180] focus:outline-0"
             data-tip={tooltipHistory}
             onClick={addToHistory}
           >
@@ -229,7 +240,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-secondary w-36 border-[1px] border-[#BE192C] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
+            className="btn btn-secondary w-36 border border-[#BE192C] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
             onClick={clearHistory}
           >
             <div className="flex gap-2 items-center">
@@ -239,7 +250,7 @@ const Inputs: React.FC = () => {
           </button>
         </div>
         <button
-          className="btn btn-primary tooltip tooltip-primary border-[1px] border-[#239A8E] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
+          className="btn btn-primary tooltip tooltip-primary border border-[#239A8E] transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0"
           data-tip={tooltipClipboard}
           onClick={copyToClipboard}
         >
