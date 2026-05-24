@@ -91,7 +91,7 @@ const Inputs: React.FC = () => {
   }
 
   const addToHistory = () => {
-    if (d !== undefined && !isNaN(Number(d))) {
+    if (typeof d === "number" && !isNaN(d)) {
       const newEntry = `${a} está para ${b} assim como ${c} está para ${Number(d).toFixed(decimalPlaces)}`
       setHistory((prev) => {
         const updatedHistory = [...prev, newEntry]
