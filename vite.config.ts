@@ -3,7 +3,12 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import { execSync } from "child_process"
 
-const commitHash = execSync("git rev-parse --short HEAD").toString().trim()
+let commitHash = "unknown"
+try {
+  commitHash = execSync("git rev-parse --short HEAD", { stdio: ["pipe", "pipe", "pipe"] }).toString().trim()
+} catch {
+  // git not available in this build context (e.g. ownership mismatch)
+}
 
 export default defineConfig({
   plugins: [react()],
