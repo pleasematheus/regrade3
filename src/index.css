@@ -19,9 +19,13 @@
   default: true;
   color-scheme: light;
   --color-primary: #2EC4B6;
+  --color-primary-content: #FDFFFC;
   --color-secondary: #E71D36;
+  --color-secondary-content: #FDFFFC;
   --color-accent: #FF9F1C;
+  --color-accent-content: #141414;
   --color-neutral: #898A88;
+  --color-neutral-content: #FDFFFC;
   --color-base-100: #fcfcfc;
   --color-base-200: #efefef;
   --color-base-300: #dcdcdc;
@@ -32,9 +36,13 @@
   name: "dark";
   color-scheme: dark;
   --color-primary: #2EC4B6;
+  --color-primary-content: #FDFFFC;
   --color-secondary: #E71D36;
+  --color-secondary-content: #FDFFFC;
   --color-accent: #FF9F1C;
+  --color-accent-content: #141414;
   --color-neutral: #898A88;
+  --color-neutral-content: #FDFFFC;
   --color-base-100: #141414;
   --color-base-200: #3d3d3d;
   --color-base-300: #454545;

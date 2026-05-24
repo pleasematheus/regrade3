@@ -1,3 +1,5 @@
+## MODIFIED Requirements
+
 ### Requirement: Build continua funcional após atualização
 O sistema SHALL compilar sem erros após qualquer alteração de CSS ou componentes (`tsc -b` e `vite build` devem passar sem erros).
 
@@ -15,10 +17,3 @@ O sistema SHALL passar na verificação de lint após qualquer alteração de co
 #### Scenario: ESLint sem violations
 - **WHEN** o comando `eslint .` é executado após a correção de cores
 - **THEN** nenhuma violation é reportada (ou apenas warnings pré-existentes)
-
-### Requirement: Servidor de desenvolvimento funciona após atualização
-O sistema SHALL iniciar o servidor de desenvolvimento sem erros após a atualização.
-
-#### Scenario: Dev server inicia corretamente
-- **WHEN** o comando `vite` é executado após atualização das dependências
-- **THEN** o servidor inicia e a aplicação é acessível no browser sem erros de runtime

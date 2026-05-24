@@ -202,7 +202,7 @@ const Inputs: React.FC = () => {
           </label>
         </div>
         <button
-          className="btn btn-secondary border border-[#BE192C] rounded-lg h-12 text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
+          className="btn btn-secondary border border-[#BE192C] rounded-lg h-12 transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0"
           onClick={clearInputs}
         >
           <div className="flex gap-2 items-center">
@@ -212,7 +212,7 @@ const Inputs: React.FC = () => {
         </button>
         <div className="flex gap-2">
           <button
-            className="btn btn-accent w-36 border border-[#D48617] rounded-lg h-12 text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0 leading-none"
+            className="btn btn-accent w-36 border border-[#D48617] rounded-lg h-12 transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0 leading-none"
             onClick={increaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -221,7 +221,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-accent w-36 border border-[#D48617] rounded-lg h-12 text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0 leading-none"
+            className="btn btn-accent w-36 border border-[#D48617] rounded-lg h-12 transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#D48617] focus:outline-0 leading-none"
             onClick={decreaseDecimalPlaces}
           >
             <div className="flex gap-2 items-center">
@@ -232,7 +232,7 @@ const Inputs: React.FC = () => {
         </div>
         <div className="flex gap-2">
           <button
-            className="btn btn-neutral tooltip w-36 border border-[#818180] rounded-lg h-12 text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#818180] focus:outline-0 leading-none"
+            className="btn btn-neutral tooltip w-36 border border-[#818180] rounded-lg h-12 transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#818180] focus:outline-0 leading-none"
             data-tip={tooltipHistory}
             onClick={addToHistory}
           >
@@ -242,7 +242,7 @@ const Inputs: React.FC = () => {
             </div>
           </button>
           <button
-            className="btn btn-secondary w-36 border border-[#BE192C] rounded-lg h-12 text-sm text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0 leading-none"
+            className="btn btn-secondary w-36 border border-[#BE192C] rounded-lg h-12 text-sm transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#BE192C] focus:outline-0 leading-none"
             onClick={clearHistory}
           >
             <div className="flex gap-2 items-center">
@@ -252,7 +252,7 @@ const Inputs: React.FC = () => {
           </button>
         </div>
         <button
-          className="btn btn-primary tooltip tooltip-primary border border-[#239A8E] rounded-lg h-12 text-sm text-current transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0 leading-none"
+          className="btn btn-primary tooltip tooltip-primary border border-[#239A8E] rounded-lg h-12 text-sm transition-all duration-300 ease-in-out focus:ring-2 focus:ring-[#239A8E] focus:outline-0 leading-none"
           data-tip={tooltipClipboard}
           onClick={copyToClipboard}
         >
