@@ -13,7 +13,7 @@ const Footer = () => {
         </a>
       </p>
       <p className="text-xs text-base-content/40 mt-1">
-        v{__APP_VERSION__} · {__COMMIT_HASH__}
+        v{__APP_VERSION__} · {__COMMIT_HASH__} · {__COMMIT_DATE__}
       </p>
     </footer>
   )
