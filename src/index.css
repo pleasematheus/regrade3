@@ -113,3 +113,12 @@
   transform: scale(0.97) !important;
   translate: 0 0 !important;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

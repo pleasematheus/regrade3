@@ -130,11 +130,10 @@ const Inputs: React.FC = () => {
         <input
           ref={inputARef}
           autoFocus
-          type="text"
-          inputMode="numeric"
+          type="number"
+          step="any"
           className="input input-bordered rounded-lg p-4 h-12 w-32 text-base transition-all duration-300 ease-in-out"
-          maxLength={18}
-          onChange={(e) => setA(e.target.value.replace(/\D/g, ""))}
+          onChange={(e) => setA(e.target.value)}
           onKeyDown={handleEnterKeyA}
           value={a ?? ""}
           placeholder="Campo A"
@@ -145,11 +144,10 @@ const Inputs: React.FC = () => {
         {/* Campo B */}
         <input
           ref={inputBRef}
-          type="text"
-          inputMode="numeric"
+          type="number"
+          step="any"
           className="input input-bordered rounded-lg p-4 h-12 w-32 text-base transition-all duration-300 ease-in-out"
-          maxLength={18}
-          onChange={(e) => setB(e.target.value.replace(/\D/g, ""))}
+          onChange={(e) => setB(e.target.value)}
           onKeyDown={handleEnterKeyB}
           value={b ?? ""}
           placeholder="Campo B"
@@ -160,11 +158,10 @@ const Inputs: React.FC = () => {
         {/* Campo C */}
         <input
           ref={inputCRef}
-          type="text"
-          inputMode="numeric"
+          type="number"
+          step="any"
           className="input input-bordered rounded-lg p-4 h-12 w-32 text-base transition-all duration-300 ease-in-out"
-          maxLength={18}
-          onChange={(e) => setC(e.target.value.replace(/\D/g, ""))}
+          onChange={(e) => setC(e.target.value)}
           onKeyDown={handleEnterKeyC}
           value={c ?? ""}
           placeholder="Campo C"
