@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 
 const History: React.FC<{ history: Array<string> }> = ({ history }) => {
   useEffect(() => {
-    localStorage.setItem("calculationHistory", JSON.stringify(history))
+    localStorage.setItem("calculationHistory:v1", JSON.stringify(history))
   }, [history])
 
   return (

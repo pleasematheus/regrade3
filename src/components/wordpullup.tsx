@@ -1,9 +1,14 @@
 import clsx from "clsx"
-import { motion } from "framer-motion"
+import { LazyMotion, domAnimation, m } from "framer-motion"
 
 interface WordPullUpProps {
   renderText: string
   transitionTime: number
+}
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  show: { y: 0, opacity: 1 },
 }
 
 export function WordPullUp(props: WordPullUpProps) {
@@ -17,34 +22,31 @@ export function WordPullUp(props: WordPullUpProps) {
     },
   }
 
-  const item = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 },
-  }
-
   const words = props.renderText
   return (
-    <motion.span
-      variants={container}
-      initial="hidden"
-      animate="show"
-      className={clsx(
-        "flex gap-3",
-        "font-display font-bold drop-shadow-sm",
-        "text-4xl md:text-5xl lg:text-6xl xl:text-7xl",
-        "tracking-[-0.02em]",
-        "md:leading-[4rem] lg:leading-[4.5rem] xl:leading-[5rem]"
-      )}
-    >
-      {words.split(" ").map((word, i) => (
-        <motion.span
-          key={i}
-          variants={item}
-          style={{}}
-        >
-          {word === "" ? <span>&nbsp;</span> : word}
-        </motion.span>
-      ))}
-    </motion.span>
+    <LazyMotion features={domAnimation}>
+      <m.span
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className={clsx(
+          "flex gap-3",
+          "font-display font-bold drop-shadow-sm",
+          "text-4xl md:text-5xl lg:text-6xl xl:text-7xl",
+          "tracking-[-0.02em]",
+          "md:leading-[4rem] lg:leading-[4.5rem] xl:leading-[5rem]"
+        )}
+      >
+        {words.split(" ").map((word, i) => (
+          <m.span
+            key={`${word}-${i}`}
+            variants={item}
+            style={{}}
+          >
+            {word === "" ? <span>&nbsp;</span> : word}
+          </m.span>
+        ))}
+      </m.span>
+    </LazyMotion>
   )
 }

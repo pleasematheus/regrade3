@@ -1,11 +1,13 @@
+const CURRENT_YEAR = new Date().getFullYear()
+
 const Footer = () => {
   return (
     <footer className="w-full bg-base-200 text-center py-2 border-t border-base-300">
-      <p>© 2024–{new Date().getFullYear()}. Todos os direitos reservados.</p>
+      <p>© 2024–{CURRENT_YEAR}. Todos os direitos reservados.</p>
       <p>
         Feito com <span title="amor">❤️</span> e carinho por{" "}
         <a
-          href="https://github.com/pleasematheus"
+          href="https://pleasematheus.dev/"
           target="_blank"
           className="text-blue-500 hover:text-sky-500 transition-all ease-in-out duration-300"
         >
