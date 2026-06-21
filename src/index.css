@@ -1,124 +1,92 @@
-/* Color Scheme:
-** 1. Night:            #141414
-** 2. Battleship gray:  #898A88 
-** 2. Baby powder:      #FDFFFC
-** 3. Light sea green:  #2EC4B6
-** 4. Red (pantone):    #E71D36
-** 5. Orange peel:      #FF9F1C
-*/
-
 @import url("cabinet-grotesk.css");
-
 @import 'tailwindcss';
-@plugin "daisyui" {
-  themes: false;
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-panel-alt: var(--panel-alt);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-on: var(--brand-on);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-accent: var(--accent);
+  --color-edge: var(--edge);
+  --color-edge-subtle: var(--edge-subtle);
+  --color-glow: var(--glow);
+  --font-sans: 'CabinetGrotesk-Variable', system-ui, sans-serif;
 }
 
-@plugin "daisyui/theme" {
-  name: "light";
-  default: true;
+:root,
+[data-theme="light"] {
+  --canvas: oklch(0.985 0 0);
+  --panel: oklch(0.955 0.005 185);
+  --panel-alt: oklch(0.93 0.008 185);
+  --ink: oklch(0.18 0.02 185);
+  --ink-muted: oklch(0.42 0.03 185);
+  --brand: oklch(0.52 0.14 185);
+  --brand-hover: oklch(0.48 0.15 185);
+  --brand-on: oklch(0.98 0 0);
+  --danger: oklch(0.52 0.19 25);
+  --danger-hover: oklch(0.48 0.20 25);
+  --accent: oklch(0.68 0.16 70);
+  --edge: oklch(0.86 0.012 185);
+  --edge-subtle: oklch(0.91 0.008 185);
+  --glow: oklch(0.52 0.14 185 / 0.35);
   color-scheme: light;
-  --color-primary: #2EC4B6;
-  --color-primary-content: #FDFFFC;
-  --color-secondary: #E71D36;
-  --color-secondary-content: #FDFFFC;
-  --color-accent: #FF9F1C;
-  --color-accent-content: #141414;
-  --color-neutral: #898A88;
-  --color-neutral-content: #FDFFFC;
-  --color-base-100: #fcfcfc;
-  --color-base-200: #efefef;
-  --color-base-300: #dcdcdc;
-  --color-base-400: #bdbdbd;
 }
 
-@plugin "daisyui/theme" {
-  name: "dark";
+[data-theme="dark"] {
+  --canvas: oklch(0.145 0.014 185);
+  --panel: oklch(0.20 0.014 185);
+  --panel-alt: oklch(0.24 0.012 185);
+  --ink: oklch(0.93 0.008 185);
+  --ink-muted: oklch(0.62 0.02 185);
+  --brand: oklch(0.72 0.12 185);
+  --brand-hover: oklch(0.68 0.13 185);
+  --brand-on: oklch(0.13 0.02 185);
+  --danger: oklch(0.60 0.17 25);
+  --danger-hover: oklch(0.56 0.18 25);
+  --accent: oklch(0.75 0.14 70);
+  --edge: oklch(0.30 0.02 185);
+  --edge-subtle: oklch(0.24 0.015 185);
+  --glow: oklch(0.72 0.12 185 / 0.35);
   color-scheme: dark;
-  --color-primary: #2EC4B6;
-  --color-primary-content: #FDFFFC;
-  --color-secondary: #E71D36;
-  --color-secondary-content: #FDFFFC;
-  --color-accent: #FF9F1C;
-  --color-accent-content: #141414;
-  --color-neutral: #898A88;
-  --color-neutral-content: #FDFFFC;
-  --color-base-100: #141414;
-  --color-base-200: #3d3d3d;
-  --color-base-300: #454545;
-  --color-base-400: #4f4f4f;
 }
 
-:root {
-  --night: #141414;
-  --battleship-gray: #898A88;
-  --baby-powder: #FDFFFC;
-  --light-sea-green: #2EC4B6;
-  --red-pantone: #E71D36;
-  --orange-peel: #FF9F1C;
-
-  font-family: 'CabinetGrotesk-Variable';
+html {
+  font-family: var(--font-sans);
   line-height: 1.5;
   font-weight: 400;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+  background-color: var(--canvas);
+  color: var(--ink);
 }
 
 *::selection {
-  color: var(--baby-powder);
-  background-color: var(--light-sea-green);
+  color: var(--brand-on);
+  background-color: var(--brand);
 }
 
-.resultado::selection {
-  color: var(--baby-powder);
-  background-color: var(--red-pantone);
-}
-
-.resultado::placeholder {
-  color: var(--baby-powder);
-  opacity: 1;
-}
-
-.resultado.input:focus,
-.resultado.input:focus-within {
-  outline: none !important;
-  box-shadow: 0 0 0 2px #239A8E !important;
-}
-
-.input:focus,
-.input:focus-within {
-  outline: none !important;
-  box-shadow: 0 0 0 2px #898A88 !important;
-}
-
-.label .label-text {
-  color: var(--color-base-content) !important;
-}
-
-@keyframes button-pop {
-  0% { transform: scale(0.98); }
-  40% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-
-.btn {
-  animation: button-pop 0.25s ease-out;
-}
-
-.btn:active:not(.btn-active) {
-  transform: scale(0.97) !important;
-  translate: 0 0 !important;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

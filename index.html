@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-theme="dark" lang="pt-br">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8" />
@@ -13,10 +13,11 @@
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:image" content="/calculator.png">
   <title>Regra de 3</title>
+  <script>document.documentElement.dataset.theme=localStorage.getItem('theme')||'dark'</script>
 </head>
 
 <body>
-  <main id="root" class="flex flex-col justify-between h-screen gap-24"></main>
+  <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
