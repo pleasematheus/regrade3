@@ -1,54 +1,43 @@
 # Regra de 3
 
-Um app para realizar o cálculo da regra de 3 de forma prática e rápida.
+Calculadora de regra de três em tempo real — rápida, precisa e sem fricção.
 
-## Descrição
+## Funcionalidades
 
-O Regrade3 é um aplicativo que facilita o cálculo da regra de três, permitindo que você resolva problemas de proporção de maneira eficiente.
+- Cálculo em tempo real (resultado atualiza enquanto digita)
+- Proporção direta e inversamente proporcional
+- Casas decimais ajustáveis (0–10)
+- Copiar resultado para área de transferência
+- Histórico de cálculos com persistência local
+- Tema claro e escuro
+- Animações com respeito a `prefers-reduced-motion`
 
-## Tecnologias Utilizadas
+## Stack
 
-- **CSS**: 80.8%
-- **TypeScript**: 15.9%
-- **JavaScript**: 2.2%
-- **HTML**: 1.1%
+- React 19 + TypeScript
+- Vite 8
+- Tailwind CSS 4 (OKLCH design tokens)
+- Framer Motion (spring arrows)
+- Cabinet Grotesk (tipografia)
 
-## Como Usar
+## Como usar
 
-1. Clone este repositório:
-   ```sh
-   git clone https://github.com/pleasematheus/regrade3.git
-   ```
-2. Navegue até o diretório do projeto:
-   ```sh
-   cd regrade3
-   ```
-3. Instale as dependências:
-   ```sh
-   npm install
-   ```
-4. Inicie o aplicativo:
-   ```sh
-   npm start
-   ```
+```sh
+git clone https://github.com/pleasematheus/regrade3.git
+cd regrade3
+npm install
+npm run dev
+```
 
-## Contribuindo
+Abre `http://localhost:5173`.
 
-1. Faça um fork deste repositório.
-2. Crie uma branch com a sua feature:
-   ```sh
-   git checkout -b minha-feature
-   ```
-3. Commit suas mudanças:
-   ```sh
-   git commit -m 'Minha nova feature'
-   ```
-4. Faça um push para a branch:
-   ```sh
-   git push origin minha-feature
-   ```
-5. Abra um Pull Request.
+## Versões
+
+| Versão | URL |
+|--------|-----|
+| Atual (redesign) | [regrade3.vercel.app](https://regrade3.vercel.app) |
+| Legacy | [legacy-regrade3.vercel.app](https://legacy-regrade3.vercel.app) |
 
 ## Licença
 
-Este projeto está licenciado sob a licença Apache 2.0. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Apache 2.0 — veja [LICENSE](LICENSE).
