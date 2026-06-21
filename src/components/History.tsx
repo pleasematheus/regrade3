@@ -1,7 +1,12 @@
 import React from "react"
 
+interface HistoryEntry {
+  id: string
+  text: string
+}
+
 const History: React.FC<{
-  history: Array<string>
+  history: Array<HistoryEntry>
   onClear: () => void
   onSave: () => void
   canSave: boolean
@@ -15,6 +20,7 @@ const History: React.FC<{
         <div className="flex gap-3">
           {canSave && (
             <button
+              type="button"
               onClick={onSave}
               className="text-xs font-medium text-brand hover:text-brand-hover transition-colors duration-150"
             >
@@ -23,6 +29,7 @@ const History: React.FC<{
           )}
           {history.length > 0 && (
             <button
+              type="button"
               onClick={onClear}
               className="text-xs font-medium text-danger hover:text-danger-hover transition-colors duration-150"
             >
@@ -40,11 +47,11 @@ const History: React.FC<{
         <ol className="flex flex-col gap-1 max-h-48 overflow-y-auto">
           {history.map((entry, i) => (
             <li
-              key={i}
+              key={entry.id}
               className="text-sm py-2 px-3 rounded-md bg-panel text-ink tabular-nums"
             >
               <span className="text-ink-muted mr-2 text-xs">{i + 1}.</span>
-              {entry}
+              {entry.text}
             </li>
           ))}
         </ol>

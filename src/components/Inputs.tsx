@@ -44,16 +44,32 @@ function calculatorReducer(
   }
 }
 
-function loadHistory(): Array<string> {
+interface HistoryEntry {
+  id: string
+  text: string
+}
+
+function loadHistory(): Array<HistoryEntry> {
   try {
     const data = localStorage.getItem(STORAGE_KEY)
-    if (data) return JSON.parse(data)
+    if (data) {
+      const parsed = JSON.parse(data)
+      if (Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === "string") {
+        const migrated = parsed.map((text: string) => ({ id: crypto.randomUUID(), text }))
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated))
+        return migrated
+      }
+      return parsed
+    }
     const legacy = localStorage.getItem(LEGACY_STORAGE_KEY)
     if (legacy) {
       const parsed = JSON.parse(legacy)
-      localStorage.setItem(STORAGE_KEY, legacy)
+      const migrated = Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === "string"
+        ? parsed.map((text: string) => ({ id: crypto.randomUUID(), text }))
+        : parsed
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated))
       localStorage.removeItem(LEGACY_STORAGE_KEY)
-      return parsed
+      return migrated
     }
   } catch {
     /* corrupted — start fresh */
@@ -91,7 +107,7 @@ const Inputs: React.FC = () => {
 
   const [copyLabel, setCopyLabel] = useState("Copiar resultado")
   const [showHistory, setShowHistory] = useState(false)
-  const [history, setHistory] = useState<Array<string>>(loadHistory)
+  const [history, setHistory] = useState<Array<HistoryEntry>>(loadHistory)
   const reduced = useReducedMotion()
 
   const inputARef = useRef<HTMLInputElement>(null)
@@ -128,7 +144,7 @@ const Inputs: React.FC = () => {
 
   const addToHistory = () => {
     if (!hasResult) return
-    const entry = `${a} → ${b} = ${c} → ${formatted}`
+    const entry: HistoryEntry = { id: crypto.randomUUID(), text: `${a} → ${b} = ${c} → ${formatted}` }
     setHistory((prev) => {
       const updated = [...prev, entry]
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))

@@ -21,6 +21,7 @@ const Header = () => {
         Regra de 3
       </h1>
       <button
+        type="button"
         onClick={toggleTheme}
         className="p-2 rounded-lg text-ink-muted hover:text-ink hover:bg-panel transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glow"
         aria-label={theme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"}
