@@ -77,15 +77,6 @@ function loadHistory(): Array<HistoryEntry> {
   return []
 }
 
-function handleEnterKey(nextRef: React.RefObject<HTMLInputElement | null>) {
-  return (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault()
-      nextRef.current?.focus()
-    }
-  }
-}
-
 const fieldBase =
   "w-full bg-panel border border-edge rounded-lg px-3 py-2.5 text-center text-lg font-medium text-ink transition-[border-color,box-shadow] duration-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-glow placeholder:text-ink-muted placeholder:font-normal"
 
@@ -169,7 +160,7 @@ const Inputs: React.FC = () => {
           onChange={(e) =>
             dispatch({ type: "setField", field: "a", value: e.target.value })
           }
-          onKeyDown={handleEnterKey(inputBRef)}
+          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); inputBRef.current?.focus() } }}
           value={a ?? ""}
           placeholder="A"
           aria-label="Campo A"
@@ -185,7 +176,7 @@ const Inputs: React.FC = () => {
           onChange={(e) =>
             dispatch({ type: "setField", field: "b", value: e.target.value })
           }
-          onKeyDown={handleEnterKey(inputCRef)}
+          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); inputCRef.current?.focus() } }}
           value={b ?? ""}
           placeholder="B"
           aria-label="Campo B"
@@ -205,7 +196,7 @@ const Inputs: React.FC = () => {
           onChange={(e) =>
             dispatch({ type: "setField", field: "c", value: e.target.value })
           }
-          onKeyDown={handleEnterKey(inputARef)}
+          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); inputARef.current?.focus() } }}
           value={c ?? ""}
           placeholder="C"
           aria-label="Campo C"
