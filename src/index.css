@@ -73,13 +73,11 @@ html {
   background-color: var(--brand);
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
+/* Campos: seleção em accent — a global usa brand, que sumia dentro do
+   resultado (fundo brand). Ink escuro fixo porque accent é claro nos dois temas. */
+input::selection {
+  color: oklch(0.13 0.02 185);
+  background-color: var(--accent);
 }
 
 @media (prefers-reduced-motion: reduce) {

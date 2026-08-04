@@ -4,6 +4,7 @@ import clsx from "clsx"
 
 import ProportionArrow from "./ProportionArrow"
 import History from "./History"
+import { maskBR, parseBR, stepBR, caretAfterDigits } from "../lib/mask"
 
 const STORAGE_KEY = "calculationHistory:v1"
 const LEGACY_STORAGE_KEY = "calculationHistory"
@@ -29,7 +30,7 @@ function calculatorReducer(
 ): CalculatorState {
   switch (action.type) {
     case "setField":
-      return { ...state, [action.field]: action.value }
+      return { ...state, [action.field]: maskBR(action.value) }
     case "increaseDecimal":
       return { ...state, decimalPlaces: Math.min(state.decimalPlaces + 1, 10) }
     case "decreaseDecimal":
@@ -105,10 +106,48 @@ const Inputs: React.FC = () => {
   const inputBRef = useRef<HTMLInputElement>(null)
   const inputCRef = useRef<HTMLInputElement>(null)
 
+  const handleChange =
+    (field: "a" | "b" | "c") => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const input = e.target
+      const digitsBefore = input.value
+        .slice(0, input.selectionStart ?? input.value.length)
+        .replace(/\D/g, "").length
+      dispatch({ type: "setField", field, value: input.value })
+      // ponytail: caret restaurado após o commit do React. Apagar um "." de milhar
+      // parece um no-op (a máscara recoloca) — aceito.
+      requestAnimationFrame(() => {
+        const pos = caretAfterDigits(input.value, digitsBefore)
+        input.setSelectionRange(pos, pos)
+      })
+    }
+
+  const handleKeyDown =
+    (
+      field: "a" | "b" | "c",
+      next: React.RefObject<HTMLInputElement | null>,
+    ) =>
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        e.preventDefault()
+        next.current?.focus()
+        return
+      }
+      // ponytail: setas ↑↓ replicam o step do input[type=number]. Passo fixo de 1,
+      // sem shift/page-up — se precisar de passo variável, ler decimalPlaces aqui.
+      const step = e.key === "ArrowUp" ? 1 : e.key === "ArrowDown" ? -1 : 0
+      if (step === 0) return
+      e.preventDefault()
+      dispatch({
+        type: "setField",
+        field,
+        value: stepBR(e.currentTarget.value, step),
+      })
+    }
+
   const d = useMemo(() => {
-    const numA = Number(a)
-    const numB = Number(b)
-    const numC = Number(c)
+    const numA = parseBR(String(a))
+    const numB = parseBR(String(b))
+    const numC = parseBR(String(c))
     const divisor = isInverselyProportional ? numC : numA
 
     if (a && b && c && divisor !== 0) {
@@ -120,7 +159,9 @@ const Inputs: React.FC = () => {
   }, [a, b, c, isInverselyProportional])
 
   const hasResult = typeof d === "number" && !isNaN(d)
-  const formatted = hasResult ? d.toFixed(decimalPlaces) : ""
+  const formatted = hasResult
+    ? maskBR(d.toFixed(decimalPlaces).replace(".", ","))
+    : ""
 
   const copyToClipboard = () => {
     if (!hasResult) return
@@ -154,13 +195,11 @@ const Inputs: React.FC = () => {
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-x-2 gap-y-2 sm:gap-x-3">
         <input
           ref={inputARef}
-          type="number"
-          step="any"
+          type="text"
+          inputMode="decimal"
           className={fieldBase}
-          onChange={(e) =>
-            dispatch({ type: "setField", field: "a", value: e.target.value })
-          }
-          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); inputBRef.current?.focus() } }}
+          onChange={handleChange("a")}
+          onKeyDown={handleKeyDown("a", inputBRef)}
           value={a ?? ""}
           placeholder="A"
           aria-label="Campo A"
@@ -170,13 +209,11 @@ const Inputs: React.FC = () => {
 
         <input
           ref={inputBRef}
-          type="number"
-          step="any"
+          type="text"
+          inputMode="decimal"
           className={fieldBase}
-          onChange={(e) =>
-            dispatch({ type: "setField", field: "b", value: e.target.value })
-          }
-          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); inputCRef.current?.focus() } }}
+          onChange={handleChange("b")}
+          onKeyDown={handleKeyDown("b", inputCRef)}
           value={b ?? ""}
           placeholder="B"
           aria-label="Campo B"
@@ -190,13 +227,11 @@ const Inputs: React.FC = () => {
 
         <input
           ref={inputCRef}
-          type="number"
-          step="any"
+          type="text"
+          inputMode="decimal"
           className={fieldBase}
-          onChange={(e) =>
-            dispatch({ type: "setField", field: "c", value: e.target.value })
-          }
-          onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); inputARef.current?.focus() } }}
+          onChange={handleChange("c")}
+          onKeyDown={handleKeyDown("c", inputARef)}
           value={c ?? ""}
           placeholder="C"
           aria-label="Campo C"
