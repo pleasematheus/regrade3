@@ -27,3 +27,4 @@ dist-ssr
 .tokensave
 .claude/*.json
 *.tsbuildinfo
+.fallow
