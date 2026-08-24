@@ -1,5 +1,5 @@
 @import url("cabinet-grotesk.css");
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme inline {
   --color-canvas: var(--canvas);
@@ -16,7 +16,7 @@
   --color-edge: var(--edge);
   --color-edge-subtle: var(--edge-subtle);
   --color-glow: var(--glow);
-  --font-sans: 'CabinetGrotesk-Variable', system-ui, sans-serif;
+  --font-sans: "CabinetGrotesk-Variable", system-ui, sans-serif;
 }
 
 :root,
@@ -30,7 +30,7 @@
   --brand-hover: oklch(0.48 0.15 185);
   --brand-on: oklch(0.98 0 0);
   --danger: oklch(0.52 0.19 25);
-  --danger-hover: oklch(0.48 0.20 25);
+  --danger-hover: oklch(0.48 0.2 25);
   --accent: oklch(0.68 0.16 70);
   --edge: oklch(0.86 0.012 185);
   --edge-subtle: oklch(0.91 0.008 185);
@@ -40,17 +40,17 @@
 
 [data-theme="dark"] {
   --canvas: oklch(0.145 0.014 185);
-  --panel: oklch(0.20 0.014 185);
+  --panel: oklch(0.2 0.014 185);
   --panel-alt: oklch(0.24 0.012 185);
   --ink: oklch(0.93 0.008 185);
   --ink-muted: oklch(0.62 0.02 185);
   --brand: oklch(0.72 0.12 185);
   --brand-hover: oklch(0.68 0.13 185);
   --brand-on: oklch(0.13 0.02 185);
-  --danger: oklch(0.60 0.17 25);
+  --danger: oklch(0.6 0.17 25);
   --danger-hover: oklch(0.56 0.18 25);
   --accent: oklch(0.75 0.14 70);
-  --edge: oklch(0.30 0.02 185);
+  --edge: oklch(0.3 0.02 185);
   --edge-subtle: oklch(0.24 0.015 185);
   --glow: oklch(0.72 0.12 185 / 0.35);
   color-scheme: dark;
@@ -81,10 +81,16 @@ input::selection {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: kill switch de prefers-reduced-motion; seletor * tem especificidade 0 e precisa vencer estilos inline do framer-motion */
     animation-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: kill switch de prefers-reduced-motion; seletor * tem especificidade 0 e precisa vencer estilos inline do framer-motion */
     animation-iteration-count: 1 !important;
+    /* biome-ignore lint/complexity/noImportantStyles: kill switch de prefers-reduced-motion; seletor * tem especificidade 0 e precisa vencer estilos inline do framer-motion */
     transition-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: kill switch de prefers-reduced-motion; seletor * tem especificidade 0 e precisa vencer estilos inline do framer-motion */
     scroll-behavior: auto !important;
   }
 }

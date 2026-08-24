@@ -1,4 +1,4 @@
-import React from "react"
+import type React from "react"
 
 interface HistoryEntry {
   id: string
@@ -18,7 +18,7 @@ const History: React.FC<{
           {history.length} cálculo{history.length !== 1 ? "s" : ""}
         </span>
         <div className="flex gap-3">
-          {canSave && (
+          {canSave ? (
             <button
               type="button"
               onClick={onSave}
@@ -26,7 +26,7 @@ const History: React.FC<{
             >
               + Salvar atual
             </button>
-          )}
+          ) : null}
           {history.length > 0 && (
             <button
               type="button"
@@ -40,9 +40,7 @@ const History: React.FC<{
       </div>
 
       {history.length === 0 ? (
-        <p className="text-center text-sm text-ink-muted py-4">
-          Nenhum cálculo salvo
-        </p>
+        <p className="text-center text-sm text-ink-muted py-4">Nenhum cálculo salvo</p>
       ) : (
         <ol className="flex flex-col gap-1 max-h-48 overflow-y-auto">
           {history.map((entry, i) => (

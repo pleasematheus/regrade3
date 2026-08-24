@@ -1,13 +1,19 @@
-import path from "path"
+import { execSync } from "node:child_process"
+import path from "node:path"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
-import { execSync } from "child_process"
 
 let commitHash = "unknown"
 let commitDate = "unknown"
 try {
-  commitHash = execSync("git rev-parse --short HEAD", { stdio: ["pipe", "pipe", "pipe"] }).toString().trim()
-  commitDate = execSync("git log -1 --format=%cd --date=format:%d/%m/%Y", { stdio: ["pipe", "pipe", "pipe"] }).toString().trim()
+  commitHash = execSync("git rev-parse --short HEAD", { stdio: ["pipe", "pipe", "pipe"] })
+    .toString()
+    .trim()
+  commitDate = execSync("git log -1 --format=%cd --date=format:%d/%m/%Y", {
+    stdio: ["pipe", "pipe", "pipe"],
+  })
+    .toString()
+    .trim()
 } catch {
   // git not available in this build context (e.g. ownership mismatch)
 }

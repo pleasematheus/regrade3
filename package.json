@@ -1,12 +1,15 @@
 {
   "name": "regrade3",
   "private": true,
-  "version": "2.2.0",
+  "version": "2.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "check": "biome check .",
+    "check:fix": "biome check . --write",
+    "format": "biome format . --write",
     "preview": "vite preview",
     "tailw": "npx @tailwindcss/cli -i ./src/index.css -o ./src/output.css --watch",
     "tailb": "npx @tailwindcss/cli -i ./src/index.css -o ./src/output.css --minify"
@@ -18,6 +21,7 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.10",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^25.9.5",

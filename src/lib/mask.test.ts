@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 
-import { maskBR, parseBR, stepBR, caretAfterDigits } from "./mask"
+import { caretAfterDigits, maskBR, parseBR, stepBR } from "./mask"
 
 assert.equal(maskBR("1234"), "1.234")
 assert.equal(maskBR("1234567"), "1.234.567")

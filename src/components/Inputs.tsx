@@ -1,10 +1,10 @@
-import React, { useState, useReducer, useRef, useMemo } from "react"
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 import clsx from "clsx"
-
-import ProportionArrow from "./ProportionArrow"
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
+import type React from "react"
+import { useMemo, useReducer, useRef, useState } from "react"
+import { caretAfterDigits, maskBR, parseBR, stepBR } from "../lib/mask"
 import History from "./History"
-import { maskBR, parseBR, stepBR, caretAfterDigits } from "../lib/mask"
+import ProportionArrow from "./ProportionArrow"
 
 const STORAGE_KEY = "calculationHistory:v1"
 const LEGACY_STORAGE_KEY = "calculationHistory"
@@ -24,10 +24,7 @@ type CalculatorAction =
   | { type: "toggleProportional" }
   | { type: "clearInputs" }
 
-function calculatorReducer(
-  state: CalculatorState,
-  action: CalculatorAction,
-): CalculatorState {
+function calculatorReducer(state: CalculatorState, action: CalculatorAction): CalculatorState {
   switch (action.type) {
     case "setField":
       return { ...state, [action.field]: maskBR(action.value) }
@@ -65,9 +62,10 @@ function loadHistory(): Array<HistoryEntry> {
     const legacy = localStorage.getItem(LEGACY_STORAGE_KEY)
     if (legacy) {
       const parsed = JSON.parse(legacy)
-      const migrated = Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === "string"
-        ? parsed.map((text: string) => ({ id: crypto.randomUUID(), text }))
-        : parsed
+      const migrated =
+        Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === "string"
+          ? parsed.map((text: string) => ({ id: crypto.randomUUID(), text }))
+          : parsed
       localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated))
       localStorage.removeItem(LEGACY_STORAGE_KEY)
       return migrated
@@ -106,26 +104,22 @@ const Inputs: React.FC = () => {
   const inputBRef = useRef<HTMLInputElement>(null)
   const inputCRef = useRef<HTMLInputElement>(null)
 
-  const handleChange =
-    (field: "a" | "b" | "c") => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const input = e.target
-      const digitsBefore = input.value
-        .slice(0, input.selectionStart ?? input.value.length)
-        .replace(/\D/g, "").length
-      dispatch({ type: "setField", field, value: input.value })
-      // ponytail: caret restaurado após o commit do React. Apagar um "." de milhar
-      // parece um no-op (a máscara recoloca) — aceito.
-      requestAnimationFrame(() => {
-        const pos = caretAfterDigits(input.value, digitsBefore)
-        input.setSelectionRange(pos, pos)
-      })
-    }
+  const handleChange = (field: "a" | "b" | "c") => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target
+    const digitsBefore = input.value
+      .slice(0, input.selectionStart ?? input.value.length)
+      .replace(/\D/g, "").length
+    dispatch({ type: "setField", field, value: input.value })
+    // ponytail: caret restaurado após o commit do React. Apagar um "." de milhar
+    // parece um no-op (a máscara recoloca) — aceito.
+    requestAnimationFrame(() => {
+      const pos = caretAfterDigits(input.value, digitsBefore)
+      input.setSelectionRange(pos, pos)
+    })
+  }
 
   const handleKeyDown =
-    (
-      field: "a" | "b" | "c",
-      next: React.RefObject<HTMLInputElement | null>,
-    ) =>
+    (field: "a" | "b" | "c", next: React.RefObject<HTMLInputElement | null>) =>
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter") {
         e.preventDefault()
@@ -151,17 +145,13 @@ const Inputs: React.FC = () => {
     const divisor = isInverselyProportional ? numC : numA
 
     if (a && b && c && divisor !== 0) {
-      return isInverselyProportional
-        ? (numA * numB) / numC
-        : (numC * numB) / numA
+      return isInverselyProportional ? (numA * numB) / numC : (numC * numB) / numA
     }
     return ""
   }, [a, b, c, isInverselyProportional])
 
-  const hasResult = typeof d === "number" && !isNaN(d)
-  const formatted = hasResult
-    ? maskBR(d.toFixed(decimalPlaces).replace(".", ","))
-    : ""
+  const hasResult = typeof d === "number" && !Number.isNaN(d)
+  const formatted = hasResult ? maskBR(d.toFixed(decimalPlaces).replace(".", ",")) : ""
 
   const copyToClipboard = () => {
     if (!hasResult) return
@@ -176,7 +166,10 @@ const Inputs: React.FC = () => {
 
   const addToHistory = () => {
     if (!hasResult) return
-    const entry: HistoryEntry = { id: crypto.randomUUID(), text: `${a} → ${b} = ${c} → ${formatted}` }
+    const entry: HistoryEntry = {
+      id: crypto.randomUUID(),
+      text: `${a} → ${b} = ${c} → ${formatted}`,
+    }
     setHistory((prev) => {
       const updated = [...prev, entry]
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
@@ -325,17 +318,13 @@ const Inputs: React.FC = () => {
 
       {/* History panel */}
       <AnimatePresence initial={false}>
-        {showHistory && (
+        {showHistory ? (
           <motion.div
             key="history"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={
-              reduced
-                ? { duration: 0 }
-                : { duration: 0.25, ease: [0.16, 1, 0.3, 1] }
-            }
+            transition={reduced ? { duration: 0 } : { duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
             <History
@@ -345,7 +334,7 @@ const Inputs: React.FC = () => {
               canSave={hasResult}
             />
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
     </div>
   )

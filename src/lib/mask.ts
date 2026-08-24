@@ -6,9 +6,7 @@ export function maskBR(raw: string): string {
   const hasComma = rest.length > 0
   const decimals = rest.join("")
 
-  const int = rawInt
-    .replace(/^0+(?=\d)/, "")
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  const int = rawInt.replace(/^0+(?=\d)/, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
   const body = hasComma ? `${int},${decimals}` : int
   return negative ? `-${body}` : body

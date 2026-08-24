@@ -1,6 +1,6 @@
-import Header from "../components/Header"
-import Inputs from "@/components/Inputs"
 import Footer from "@/components/Footer"
+import Inputs from "@/components/Inputs"
+import Header from "../components/Header"
 
 function App() {
   return (

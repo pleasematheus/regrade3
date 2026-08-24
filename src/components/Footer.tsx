@@ -9,6 +9,7 @@ const Footer = () => {
           href="https://pleasematheus.dev/"
           target="_blank"
           className="text-brand hover:text-brand-hover transition-colors duration-200"
+          rel="noopener"
         >
           pleasematheus
         </a>

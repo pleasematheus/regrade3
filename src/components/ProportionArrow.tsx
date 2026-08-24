@@ -13,9 +13,19 @@ export default function ProportionArrow({ inverse }: { inverse: boolean }) {
       transition={reduced ? instant : spring}
       aria-hidden="true"
     >
-      <svg width="36" height="20" viewBox="0 0 36 20" fill="none">
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        width="36"
+        height="20"
+        viewBox="0 0 36 20"
+        fill="none"
+      >
         <line
-          x1="2" y1="10" x2="28" y2="10"
+          x1="2"
+          y1="10"
+          x2="28"
+          y2="10"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
