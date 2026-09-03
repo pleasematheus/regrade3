@@ -73,7 +73,7 @@ const ICONS: Record<Theme, () => React.JSX.Element> = {
 const Header = () => {
   const [theme, setTheme] = useState<Theme>(() => {
     const stored = localStorage.getItem("theme")
-    return isTheme(stored) ? stored : "dark"
+    return isTheme(stored) ? stored : "system"
   })
 
   useEffect(() => {
