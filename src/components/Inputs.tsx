@@ -151,6 +151,10 @@ const Inputs: React.FC = () => {
     return ""
   }, [a, b, c, isInverselyProportional])
 
+  const panelTransition = reduced
+    ? { duration: 0 }
+    : { duration: 0.25, ease: [0.16, 1, 0.3, 1] as const }
+
   const hasResult = typeof d === "number" && !Number.isNaN(d)
   const formatted = hasResult ? maskBR(d.toFixed(decimalPlaces).replace(".", ",")) : ""
 
@@ -316,25 +320,27 @@ const Inputs: React.FC = () => {
       </div>
 
       {/* History panel */}
-      <AnimatePresence initial={false}>
-        {showHistory ? (
-          <m.div
-            key="history"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={reduced ? { duration: 0 } : { duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
-          >
-            <History
-              history={history}
-              onClear={clearHistory}
-              onSave={addToHistory}
-              canSave={hasResult}
-            />
-          </m.div>
-        ) : null}
-      </AnimatePresence>
+      <m.div layout className="overflow-hidden" transition={panelTransition}>
+        <AnimatePresence initial={false}>
+          {showHistory ? (
+            <m.div
+              key="history"
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={panelTransition}
+            >
+              <History
+                history={history}
+                onClear={clearHistory}
+                onSave={addToHistory}
+                canSave={hasResult}
+              />
+            </m.div>
+          ) : null}
+        </AnimatePresence>
+      </m.div>
     </div>
   )
 }
