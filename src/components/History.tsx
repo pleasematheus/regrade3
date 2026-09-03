@@ -1,9 +1,5 @@
 import type React from "react"
-
-interface HistoryEntry {
-  id: string
-  text: string
-}
+import { formatEntry, type HistoryEntry } from "../lib/history"
 
 const History: React.FC<{
   history: Array<HistoryEntry>
@@ -49,7 +45,7 @@ const History: React.FC<{
               className="text-sm py-2 px-3 rounded-md bg-panel text-ink tabular-nums"
             >
               <span className="text-ink-muted mr-2 text-xs">{i + 1}.</span>
-              {entry.text}
+              {formatEntry(entry)}
             </li>
           ))}
         </ol>

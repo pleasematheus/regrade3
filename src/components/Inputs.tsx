@@ -3,12 +3,17 @@ import { AnimatePresence, useReducedMotion } from "framer-motion"
 import * as m from "framer-motion/m"
 import type React from "react"
 import { useMemo, useReducer, useRef, useState } from "react"
-import { caretAfterDigits, maskBR, parseBR, stepBR } from "../lib/mask"
+import {
+  clearStoredHistory,
+  computeResult,
+  formatResult,
+  type HistoryEntry,
+  loadHistory,
+  saveHistory,
+} from "../lib/history"
+import { caretAfterDigits, maskBR, stepBR } from "../lib/mask"
 import History from "./History"
 import ProportionArrow from "./ProportionArrow"
-
-const STORAGE_KEY = "calculationHistory:v1"
-const LEGACY_STORAGE_KEY = "calculationHistory"
 
 type CalculatorState = {
   a: number | string
@@ -41,40 +46,6 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction): Ca
     case "clearInputs":
       return { ...state, a: "", b: "", c: "" }
   }
-}
-
-interface HistoryEntry {
-  id: string
-  text: string
-}
-
-function loadHistory(): Array<HistoryEntry> {
-  try {
-    const data = localStorage.getItem(STORAGE_KEY)
-    if (data) {
-      const parsed = JSON.parse(data)
-      if (Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === "string") {
-        const migrated = parsed.map((text: string) => ({ id: crypto.randomUUID(), text }))
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated))
-        return migrated
-      }
-      return parsed
-    }
-    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY)
-    if (legacy) {
-      const parsed = JSON.parse(legacy)
-      const migrated =
-        Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === "string"
-          ? parsed.map((text: string) => ({ id: crypto.randomUUID(), text }))
-          : parsed
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated))
-      localStorage.removeItem(LEGACY_STORAGE_KEY)
-      return migrated
-    }
-  } catch {
-    /* corrupted — start fresh */
-  }
-  return []
 }
 
 const fieldBase =
@@ -139,24 +110,31 @@ const Inputs: React.FC = () => {
       })
     }
 
-  const d = useMemo(() => {
-    const numA = parseBR(String(a))
-    const numB = parseBR(String(b))
-    const numC = parseBR(String(c))
-    const divisor = isInverselyProportional ? numC : numA
-
-    if (a && b && c && divisor !== 0) {
-      return isInverselyProportional ? (numA * numB) / numC : (numC * numB) / numA
-    }
-    return ""
-  }, [a, b, c, isInverselyProportional])
+  const d = useMemo(
+    () => computeResult(String(a), String(b), String(c), isInverselyProportional) ?? "",
+    [a, b, c, isInverselyProportional],
+  )
 
   const panelTransition = reduced
     ? { duration: 0 }
     : { duration: 0.25, ease: [0.16, 1, 0.3, 1] as const }
 
   const hasResult = typeof d === "number" && !Number.isNaN(d)
-  const formatted = hasResult ? maskBR(d.toFixed(decimalPlaces).replace(".", ",")) : ""
+  const formatted = hasResult ? formatResult(d, decimalPlaces) : ""
+
+  const currentEntry = (): HistoryEntry => ({
+    id: crypto.randomUUID(),
+    a: String(a),
+    b: String(b),
+    c: String(c),
+    inverse: isInverselyProportional,
+    decimalPlaces,
+  })
+
+  const persist = (next: Array<HistoryEntry>) => {
+    setHistory(next)
+    saveHistory(next)
+  }
 
   const copyToClipboard = () => {
     if (!hasResult) return
@@ -171,18 +149,12 @@ const Inputs: React.FC = () => {
 
   const addToHistory = () => {
     if (!hasResult) return
-    const entry: HistoryEntry = {
-      id: crypto.randomUUID(),
-      text: `${a} → ${b} = ${c} → ${formatted}`,
-    }
-    const updated = [...history, entry]
-    setHistory(updated)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+    persist([...history, currentEntry()])
   }
 
   const clearHistory = () => {
     setHistory([])
-    localStorage.removeItem(STORAGE_KEY)
+    clearStoredHistory()
   }
 
   return (
