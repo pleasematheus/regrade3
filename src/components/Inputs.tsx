@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { AnimatePresence, useReducedMotion } from "framer-motion"
 import * as m from "framer-motion/m"
 import type React from "react"
-import { useMemo, useReducer, useRef, useState } from "react"
+import { useEffect, useMemo, useReducer, useRef, useState } from "react"
 import {
   clearStoredHistory,
   computeResult,
@@ -29,6 +29,7 @@ type CalculatorAction =
   | { type: "decreaseDecimal" }
   | { type: "toggleProportional" }
   | { type: "clearInputs" }
+  | { type: "loadEntry"; entry: HistoryEntry }
 
 function calculatorReducer(state: CalculatorState, action: CalculatorAction): CalculatorState {
   switch (action.type) {
@@ -45,6 +46,14 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction): Ca
       }
     case "clearInputs":
       return { ...state, a: "", b: "", c: "" }
+    case "loadEntry":
+      return {
+        a: action.entry.a,
+        b: action.entry.b,
+        c: action.entry.c,
+        decimalPlaces: action.entry.decimalPlaces,
+        isInverselyProportional: action.entry.inverse,
+      }
   }
 }
 
@@ -68,9 +77,18 @@ const Inputs: React.FC = () => {
   const { a, b, c, decimalPlaces, isInverselyProportional } = state
 
   const [copyLabel, setCopyLabel] = useState("Copiar resultado")
+  const [copiedId, setCopiedId] = useState<string | null>(null)
   const [showHistory, setShowHistory] = useState(false)
   const [history, setHistory] = useState<Array<HistoryEntry>>(loadHistory)
   const reduced = useReducedMotion()
+
+  // Feedback de "copiado" por item: some sozinho e o cleanup evita escrever
+  // estado depois que o painel some.
+  useEffect(() => {
+    if (copiedId === null) return
+    const timer = setTimeout(() => setCopiedId(null), 1500)
+    return () => clearTimeout(timer)
+  }, [copiedId])
 
   const inputARef = useRef<HTMLInputElement>(null)
   const inputBRef = useRef<HTMLInputElement>(null)
@@ -155,6 +173,30 @@ const Inputs: React.FC = () => {
   const clearHistory = () => {
     setHistory([])
     clearStoredHistory()
+  }
+
+  const deleteEntry = (id: string) => {
+    persist(history.filter((entry) => entry.id !== id))
+  }
+
+  /** Sobrescreve a entrada com o cálculo que está na calculadora agora. */
+  const updateEntry = (id: string) => {
+    if (!hasResult) return
+    persist(history.map((entry) => (entry.id === id ? { ...currentEntry(), id } : entry)))
+  }
+
+  const reuseEntry = (entry: HistoryEntry) => {
+    dispatch({ type: "loadEntry", entry })
+    setShowHistory(false)
+  }
+
+  const copyEntry = (entry: HistoryEntry) => {
+    const result = computeResult(entry.a, entry.b, entry.c, entry.inverse)
+    if (result === null) return
+    navigator.clipboard
+      .writeText(formatResult(result, entry.decimalPlaces))
+      .then(() => setCopiedId(entry.id))
+      .catch((err) => console.error("Erro ao copiar:", err))
   }
 
   return (
@@ -307,7 +349,12 @@ const Inputs: React.FC = () => {
                 history={history}
                 onClear={clearHistory}
                 onSave={addToHistory}
+                onDelete={deleteEntry}
+                onCopy={copyEntry}
+                onReuse={reuseEntry}
+                onUpdate={updateEntry}
                 canSave={hasResult}
+                copiedId={copiedId}
               />
             </m.div>
           ) : null}
