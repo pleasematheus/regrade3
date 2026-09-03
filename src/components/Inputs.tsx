@@ -170,11 +170,9 @@ const Inputs: React.FC = () => {
       id: crypto.randomUUID(),
       text: `${a} → ${b} = ${c} → ${formatted}`,
     }
-    setHistory((prev) => {
-      const updated = [...prev, entry]
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
-      return updated
-    })
+    const updated = [...history, entry]
+    setHistory(updated)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
   }
 
   const clearHistory = () => {
