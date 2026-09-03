@@ -50,6 +50,7 @@
       },
       "style": {
         "noNonNullAssertion": "off",
+        "useComponentExportOnlyModules": "warn",
         "noParameterAssign": "error",
         "useErrorCause": "error",
         "noYodaExpression": "error"
