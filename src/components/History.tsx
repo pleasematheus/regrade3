@@ -22,7 +22,7 @@ const History: React.FC<{
             <button
               type="button"
               onClick={onSave}
-              className="text-xs font-medium text-brand hover:text-brand-hover transition-colors duration-150"
+              className="text-xs font-medium text-brand hover:text-brand-hover transition-colors duration-150 -mx-2 -my-2.5 px-2 py-2.5"
             >
               + Salvar atual
             </button>
@@ -31,7 +31,7 @@ const History: React.FC<{
             <button
               type="button"
               onClick={onClear}
-              className="text-xs font-medium text-danger hover:text-danger-hover transition-colors duration-150"
+              className="text-xs font-medium text-danger hover:text-danger-hover transition-colors duration-150 -mx-2 -my-2.5 px-2 py-2.5"
             >
               Limpar tudo
             </button>
