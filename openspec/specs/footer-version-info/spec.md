@@ -1,3 +1,8 @@
+## Purpose
+Garantir que o footer identifique com precisão a build em execução, exibindo versão semântica, hash e data do commit correspondente.
+
+## Requirements
+
 ### Requirement: Footer exibe data do último commit
 O footer SHALL exibir a data do commit mais recente no formato `DD/MM/AAAA`, inline na mesma linha que a versão semântica e o hash do commit, separada por `·`.
 

@@ -1,3 +1,8 @@
+## Purpose
+Garantir que os campos numéricos aceitem valores decimais e sejam operáveis por teclado, sem bloquear entradas parciais durante a digitação.
+
+## Requirements
+
 ### Requirement: Campos aceitam números decimais
 Os campos de entrada A, B e C SHALL aceitar valores com casas decimais usando ponto (`.`) como separador, permitindo grandezas como `1.5`, `0.25` e `3.14`.
 

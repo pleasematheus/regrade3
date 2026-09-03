@@ -1,3 +1,8 @@
+## Purpose
+Garantir que o projeto continue compilando, passando no lint e rodando em desenvolvimento após atualizações de dependências ou alterações de estilo e componentes.
+
+## Requirements
+
 ### Requirement: Build continua funcional após atualização
 O sistema SHALL compilar sem erros após qualquer alteração de CSS ou componentes (`tsc -b` e `vite build` devem passar sem erros).
 
@@ -12,8 +17,8 @@ O sistema SHALL compilar sem erros após qualquer alteração de CSS ou componen
 ### Requirement: Lint passa após atualização
 O sistema SHALL passar na verificação de lint após qualquer alteração de componentes.
 
-#### Scenario: ESLint sem violations
-- **WHEN** o comando `eslint .` é executado após a correção de cores
+#### Scenario: Biome sem violations
+- **WHEN** o comando `biome check .` é executado após a correção de cores
 - **THEN** nenhuma violation é reportada (ou apenas warnings pré-existentes)
 
 ### Requirement: Servidor de desenvolvimento funciona após atualização

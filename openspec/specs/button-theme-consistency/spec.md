@@ -1,3 +1,8 @@
+## Purpose
+Garantir que os botões da interface mantenham cores de fundo e de texto legíveis e consistentes em ambos os temas, sem depender de herança CSS ou de valores calculados automaticamente por biblioteca.
+
+## Requirements
+
 ### Requirement: Botões exibem cores corretas no tema claro
 O sistema SHALL exibir todos os botões da interface com a cor de fundo (`btn-primary`, `btn-secondary`, `btn-accent`, `btn-neutral`) e a cor de texto correspondente (`--color-*-content`) definidas explicitamente no tema `light`, sem depender de herança CSS ou valores auto-calculados pelo DaisyUI.
 

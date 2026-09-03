@@ -1,3 +1,8 @@
+## Purpose
+Garantir que o histórico receba apenas entradas com cálculo completo e válido, ignorando silenciosamente ações disparadas em estado incompleto.
+
+## Requirements
+
 ### Requirement: Histórico só recebe entradas com cálculo válido
 O botão "Adicionar ao histórico" SHALL inserir uma entrada apenas quando os três campos de entrada (A, B e C) estão preenchidos e o resultado D é um número calculado. Quando qualquer campo está vazio ou o cálculo não foi realizado, a ação SHALL ser ignorada silenciosamente.
 
