@@ -1,7 +1,7 @@
 import { execSync } from "node:child_process"
 import path from "node:path"
 import react from "@vitejs/plugin-react"
-import { defineConfig } from "vite"
+import { defineConfig } from "vitest/config"
 
 let commitHash = "unknown"
 let commitDate = "unknown"
@@ -24,6 +24,9 @@ export default defineConfig({
     __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
     __COMMIT_HASH__: JSON.stringify(commitHash),
     __COMMIT_DATE__: JSON.stringify(commitDate),
+  },
+  test: {
+    include: ["src/**/*.test.ts"],
   },
   resolve: {
     alias: {
