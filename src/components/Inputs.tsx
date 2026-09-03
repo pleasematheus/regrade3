@@ -1,5 +1,6 @@
 import clsx from "clsx"
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
+import { AnimatePresence, useReducedMotion } from "framer-motion"
+import * as m from "framer-motion/m"
 import type React from "react"
 import { useMemo, useReducer, useRef, useState } from "react"
 import { caretAfterDigits, maskBR, parseBR, stepBR } from "../lib/mask"
@@ -317,7 +318,7 @@ const Inputs: React.FC = () => {
       {/* History panel */}
       <AnimatePresence initial={false}>
         {showHistory ? (
-          <motion.div
+          <m.div
             key="history"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -331,7 +332,7 @@ const Inputs: React.FC = () => {
               onSave={addToHistory}
               canSave={hasResult}
             />
-          </motion.div>
+          </m.div>
         ) : null}
       </AnimatePresence>
     </div>

@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from "framer-motion"
+import { useReducedMotion } from "framer-motion"
+import * as m from "framer-motion/m"
 
 const spring = { type: "spring" as const, stiffness: 400, damping: 15 }
 const instant = { duration: 0 }
@@ -7,7 +8,7 @@ export default function ProportionArrow({ inverse }: { inverse: boolean }) {
   const reduced = useReducedMotion()
 
   return (
-    <motion.div
+    <m.div
       className="flex items-center justify-center shrink-0 text-brand"
       animate={{ rotate: inverse ? 180 : 0 }}
       transition={reduced ? instant : spring}
@@ -38,6 +39,6 @@ export default function ProportionArrow({ inverse }: { inverse: boolean }) {
           strokeLinejoin="round"
         />
       </svg>
-    </motion.div>
+    </m.div>
   )
 }
