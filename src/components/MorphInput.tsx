@@ -28,7 +28,7 @@ const MorphInput: React.FC<MorphInputProps> = ({ value, className, onSelect, ...
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 flex items-center justify-center border border-transparent px-3 py-2.5 text-lg font-medium text-ink"
+        className="pointer-events-none absolute inset-0 flex items-center justify-center border border-transparent px-3 py-2.5 text-lg font-medium tabular-nums text-ink"
       >
         <TextMorph locale="pt-BR" cursorIndex={caret}>
           {value}

@@ -60,10 +60,10 @@ function calculatorReducer(state: CalculatorState, action: CalculatorAction): Ca
 }
 
 const fieldBase =
-  "w-full bg-panel border border-edge rounded-lg px-3 py-2.5 text-center text-lg font-medium text-ink transition-[border-color,box-shadow] duration-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-glow placeholder:text-ink-muted placeholder:font-normal"
+  "w-full bg-panel border border-edge rounded-lg px-3 py-2.5 text-center text-lg font-medium tabular-nums text-ink transition-[border-color,box-shadow] duration-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-glow placeholder:text-ink-muted placeholder:font-normal"
 
 const resultField =
-  "block w-full bg-brand border border-transparent rounded-lg px-3 py-2.5 text-center text-lg font-bold text-brand-on"
+  "block w-full bg-brand border border-transparent rounded-lg px-3 py-2.5 text-center text-lg font-bold tabular-nums text-brand-on"
 
 const toolBtn =
   "px-2.5 py-1.5 rounded-md text-sm text-ink-muted hover:text-ink hover:bg-panel-alt transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glow"

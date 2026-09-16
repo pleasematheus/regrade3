@@ -56,7 +56,7 @@ const History: React.FC<{
               key={entry.id}
               className="flex items-center gap-1 py-1 px-2 rounded-md bg-panel text-ink"
             >
-              <span className="text-ink-muted mr-1 text-xs shrink-0">
+              <span className="text-ink-muted mr-1 text-xs tabular-nums shrink-0">
                 <TextMorph>{`${i + 1}.`}</TextMorph>
               </span>
               <span className="text-sm tabular-nums grow truncate">
