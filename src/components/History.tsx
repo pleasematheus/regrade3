@@ -1,4 +1,5 @@
 import type React from "react"
+import { TextMorph } from "torph/react"
 import { formatEntry, type HistoryEntry } from "../lib/history"
 
 const headerBtn =
@@ -55,8 +56,12 @@ const History: React.FC<{
               key={entry.id}
               className="flex items-center gap-1 py-1 px-2 rounded-md bg-panel text-ink"
             >
-              <span className="text-ink-muted mr-1 text-xs shrink-0">{i + 1}.</span>
-              <span className="text-sm tabular-nums grow truncate">{formatEntry(entry)}</span>
+              <span className="text-ink-muted mr-1 text-xs shrink-0">
+                <TextMorph>{`${i + 1}.`}</TextMorph>
+              </span>
+              <span className="text-sm tabular-nums grow truncate">
+                <TextMorph locale="pt-BR">{formatEntry(entry)}</TextMorph>
+              </span>
 
               <button
                 type="button"

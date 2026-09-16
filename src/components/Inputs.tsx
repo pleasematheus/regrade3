@@ -3,6 +3,7 @@ import { AnimatePresence, useReducedMotion } from "framer-motion"
 import * as m from "framer-motion/m"
 import type React from "react"
 import { useEffect, useMemo, useReducer, useRef, useState } from "react"
+import { TextMorph } from "torph/react"
 import {
   clearStoredHistory,
   computeResult,
@@ -13,6 +14,7 @@ import {
 } from "../lib/history"
 import { caretAfterDigits, maskBR, stepBR } from "../lib/mask"
 import History from "./History"
+import MorphInput from "./MorphInput"
 import ProportionArrow from "./ProportionArrow"
 
 type CalculatorState = {
@@ -61,7 +63,7 @@ const fieldBase =
   "w-full bg-panel border border-edge rounded-lg px-3 py-2.5 text-center text-lg font-medium text-ink transition-[border-color,box-shadow] duration-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-glow placeholder:text-ink-muted placeholder:font-normal"
 
 const resultField =
-  "w-full bg-brand border border-transparent rounded-lg px-3 py-2.5 text-center text-lg font-bold text-brand-on transition-[box-shadow] duration-200 focus:outline-none focus:ring-2 focus:ring-glow placeholder:text-brand-on/60"
+  "block w-full bg-brand border border-transparent rounded-lg px-3 py-2.5 text-center text-lg font-bold text-brand-on"
 
 const toolBtn =
   "px-2.5 py-1.5 rounded-md text-sm text-ink-muted hover:text-ink hover:bg-panel-alt transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glow"
@@ -203,28 +205,28 @@ const Inputs: React.FC = () => {
     <div className="w-full max-w-sm flex flex-col gap-4">
       {/* Calculator grid */}
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-x-2 gap-y-2 sm:gap-x-3">
-        <input
+        <MorphInput
           ref={inputARef}
           type="text"
           inputMode="decimal"
           className={fieldBase}
           onChange={handleChange("a")}
           onKeyDown={handleKeyDown("a", inputBRef)}
-          value={a ?? ""}
+          value={String(a ?? "")}
           placeholder="A"
           aria-label="Campo A"
         />
 
         <ProportionArrow inverse={isInverselyProportional} />
 
-        <input
+        <MorphInput
           ref={inputBRef}
           type="text"
           inputMode="decimal"
           className={fieldBase}
           onChange={handleChange("b")}
           onKeyDown={handleKeyDown("b", inputCRef)}
-          value={b ?? ""}
+          value={String(b ?? "")}
           placeholder="B"
           aria-label="Campo B"
         />
@@ -235,29 +237,25 @@ const Inputs: React.FC = () => {
           </span>
         </div>
 
-        <input
+        <MorphInput
           ref={inputCRef}
           type="text"
           inputMode="decimal"
           className={fieldBase}
           onChange={handleChange("c")}
           onKeyDown={handleKeyDown("c", inputARef)}
-          value={c ?? ""}
+          value={String(c ?? "")}
           placeholder="C"
           aria-label="Campo C"
         />
 
         <ProportionArrow inverse={isInverselyProportional} />
 
-        <input
-          type="text"
-          inputMode="numeric"
-          className={resultField}
-          readOnly
-          value={formatted}
-          placeholder="X"
-          aria-label="Resultado"
-        />
+        <output aria-label="Resultado" className={resultField}>
+          <TextMorph locale="pt-BR" className={clsx(!hasResult && "text-brand-on/60 font-normal")}>
+            {hasResult ? formatted : "X"}
+          </TextMorph>
+        </output>
       </div>
 
       {/* Toolbar */}
@@ -271,7 +269,7 @@ const Inputs: React.FC = () => {
           −
         </button>
         <span className="px-1 text-xs font-medium text-ink-muted tabular-nums min-w-[3ch] text-center select-none">
-          {decimalPlaces}
+          <TextMorph>{String(decimalPlaces)}</TextMorph>
         </span>
         <button
           type="button"
@@ -316,7 +314,7 @@ const Inputs: React.FC = () => {
           disabled={!hasResult}
           className="w-full py-2.5 px-4 rounded-lg bg-brand text-brand-on font-medium text-sm transition-[background-color,transform] duration-200 hover:bg-brand-hover active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-glow disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
         >
-          {copyLabel}
+          <TextMorph>{copyLabel}</TextMorph>
         </button>
 
         <button
