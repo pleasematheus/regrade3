@@ -12,6 +12,11 @@ Calculadora de regra de três em tempo real — rápida, precisa e sem fricção
 - Tema claro e escuro
 - Animações com respeito a `prefers-reduced-motion`
 
+## Correções da versão 2.9.2
+
+- Mantém o cursor após a vírgula nos campos A, B e C. Ao digitar `10,1`, o valor permanece `10,1`.
+- Preserva a posição do cursor ao editar valores negativos e números com separadores de milhar.
+
 ## Stack
 
 - React 19 + TypeScript

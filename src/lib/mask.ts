@@ -25,12 +25,14 @@ export function stepBR(masked: string, delta: number): string {
   return maskBR(Number(next.toFixed(10)).toString().replace(".", ","))
 }
 
-/** Índice na string mascarada que vem logo após `count` dígitos. */
-export function caretAfterDigits(masked: string, count: number): number {
+/** Preserva a posição do cursor após aplicar a máscara, incluindo sinal e vírgula. */
+export function caretAfterMask(raw: string, position: number): number {
+  const masked = maskBR(raw)
+  const count = maskBR(raw.slice(0, position)).replace(/\./g, "").length
   if (count <= 0) return 0
   let seen = 0
   for (let i = 0; i < masked.length; i++) {
-    if (/\d/.test(masked[i])) {
+    if (masked[i] !== ".") {
       seen++
       if (seen === count) return i + 1
     }

@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { AnimatePresence, useReducedMotion } from "framer-motion"
 import * as m from "framer-motion/m"
 import type React from "react"
-import { useEffect, useMemo, useReducer, useRef, useState } from "react"
+import { useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react"
 import { TextMorph } from "torph/react"
 import {
   clearStoredHistory,
@@ -12,7 +12,7 @@ import {
   loadHistory,
   saveHistory,
 } from "../lib/history"
-import { caretAfterDigits, maskBR, stepBR } from "../lib/mask"
+import { caretAfterMask, maskBR, stepBR } from "../lib/mask"
 import History from "./History"
 import MorphInput from "./MorphInput"
 import ProportionArrow from "./ProportionArrow"
@@ -95,19 +95,22 @@ const Inputs: React.FC = () => {
   const inputARef = useRef<HTMLInputElement>(null)
   const inputBRef = useRef<HTMLInputElement>(null)
   const inputCRef = useRef<HTMLInputElement>(null)
+  const pendingCaret = useRef<{ input: HTMLInputElement; position: number } | null>(null)
+
+  useLayoutEffect(() => {
+    const pending = pendingCaret.current
+    if (!pending) return
+    pendingCaret.current = null
+    pending.input.setSelectionRange(pending.position, pending.position)
+  })
 
   const handleChange = (field: "a" | "b" | "c") => (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target
-    const digitsBefore = input.value
-      .slice(0, input.selectionStart ?? input.value.length)
-      .replace(/\D/g, "").length
+    pendingCaret.current = {
+      input,
+      position: caretAfterMask(input.value, input.selectionStart ?? input.value.length),
+    }
     dispatch({ type: "setField", field, value: input.value })
-    // ponytail: caret restaurado após o commit do React. Apagar um "." de milhar
-    // parece um no-op (a máscara recoloca) — aceito.
-    requestAnimationFrame(() => {
-      const pos = caretAfterDigits(input.value, digitsBefore)
-      input.setSelectionRange(pos, pos)
-    })
   }
 
   const handleKeyDown =

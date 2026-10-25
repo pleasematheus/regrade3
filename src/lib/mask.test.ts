@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { caretAfterDigits, maskBR, parseBR, stepBR } from "./mask"
+import { caretAfterMask, maskBR, parseBR, stepBR } from "./mask"
 
 describe("maskBR", () => {
   it("insere separador de milhar", () => {
@@ -56,14 +56,43 @@ describe("stepBR", () => {
   })
 })
 
-describe("caretAfterDigits", () => {
-  it("posiciona o caret após a contagem de dígitos, pulando separadores", () => {
-    // 4 dígitos em "1.234,5" terminam depois do "4"
-    expect(caretAfterDigits("1.234,5", 4)).toBe(5)
+describe("caretAfterMask", () => {
+  it("permite digitar 10,1 sem mover o cursor para antes da vírgula", () => {
+    let value = ""
+    let caret = 0
+    for (const character of "10,1") {
+      const raw = value.slice(0, caret) + character + value.slice(caret)
+      caret = caretAfterMask(raw, caret + 1)
+      value = maskBR(raw)
+      expect(caret).toBe(value.length)
+    }
+    expect(value).toBe("10,1")
   })
 
-  it("trata os extremos", () => {
-    expect(caretAfterDigits("1.234,5", 0)).toBe(0)
-    expect(caretAfterDigits("1.234,5", 99)).toBe(7)
+  it("preserva os dois lados da vírgula durante a edição", () => {
+    expect(caretAfterMask("10,25", 2)).toBe(2)
+    expect(caretAfterMask("10,25", 3)).toBe(3)
+    expect(caretAfterMask("10,25", 4)).toBe(4)
+    expect(caretAfterMask(",5", 1)).toBe(1)
+  })
+
+  it("acompanha a inserção de separadores de milhar", () => {
+    expect(caretAfterMask("1234,5", 4)).toBe(5)
+    expect(caretAfterMask("1234,5", 5)).toBe(6)
+    expect(caretAfterMask("12345,6", 2)).toBe(2)
+  })
+
+  it("acompanha o sinal negativo e caracteres removidos pela máscara", () => {
+    expect(caretAfterMask("-", 1)).toBe(1)
+    expect(caretAfterMask("-10,", 4)).toBe(4)
+    expect(caretAfterMask("007,", 4)).toBe(2)
+    expect(caretAfterMask("10,,5", 4)).toBe(3)
+    expect(caretAfterMask("10x,5", 3)).toBe(2)
+  })
+
+  it("trata campo vazio e os extremos", () => {
+    expect(caretAfterMask("", 0)).toBe(0)
+    expect(caretAfterMask("1.234,5", 0)).toBe(0)
+    expect(caretAfterMask("1.234,5", 99)).toBe(7)
   })
 })
